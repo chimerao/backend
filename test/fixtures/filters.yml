@@ -1,0 +1,26 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+dragon_friend_filter:
+  id: 1
+  profile_id: 1
+  name: Friends
+  url_name: friends
+  opt_in: false
+
+lion_mane_filter:
+  id: 2
+  profile_id: 3
+  name: Manes
+  url_name: manes
+  opt_in: true
+
+dragon_fatty_filter:
+  id: 3
+  profile_id: 1
+  name: Fatties
+  url_name: fatties
+  opt_in: false

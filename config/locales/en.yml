@@ -1,0 +1,79 @@
+#
+# This is a localization file. The way it works is that there
+# is a key, then a value (programming terms):
+#
+# key: "value"
+# hello: "hi"
+#
+# If you are translating this, only worry about the value, the stuff in quotes.
+# For example, if I were translating this into pirate speak, the hello line
+# would be:
+#
+# hello: "ahoy"
+#
+# There are some phrases that have substitutions in them. These are bracketed:
+#
+# "A piece of art by %{name}."
+#
+# This example just means that a person's name will be used in there.
+#
+# Comments have # in front of them. These are purely informational to help
+# guide the translation to other languages. They do not require translation.
+#
+en:
+  hello: "hi" # informal
+  login: "sign in"
+  logout: "logout"
+  remember_me: "remember me"
+  sign_up: "sign up"
+  comment:
+    noun: "comment"
+    verb: "comment"
+  comments:
+    one: "comment"
+    other: "comments"
+  reply: "reply"
+  you: "you"
+  delete: "delete"
+
+  character: "character"
+  creator: "creator"
+  curator: "curator"
+
+# Models
+
+  activerecord:
+    attributes:
+      user:
+        username: "Username"
+        email: "Email Address"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+
+# Page View Elements
+
+  profile_pics:
+    edit:
+      choose_file: "Add a New Profile Pic"
+      make_default: "Make this pic your default"
+      submit: "add"
+  user_sessions:
+    new:
+      login: "Email or Username"
+
+# Titles for pages.
+
+  title:
+    user_sessions:
+      new: "Sign In"
+    users:
+      new: "Sign up!"
+
+# Notices
+
+  flash:
+    logout: "You&rsquo;ve been logged out. Come back again soon! &nbsp; : )"
+    sessions:
+      create:
+        success: "Login successful!"
+        failure: "No such user or incorrect password."

@@ -1,0 +1,60 @@
+<div id="banner" class="image">
+	<div class="banner-image" style="background:url(<%= @profile.banner_image %>) no-repeat;background-size:100%;">
+		<div class="primary">
+			<%= link_to image_tag(url_for_profile_pic(@profile, size: :pixels_80), class: 'profile-pic'), profile_home_path(@profile.url_name) %>
+			<h1>
+				<%= link_to @profile.name, profile_home_path(@profile.url_name) %>
+				<%- if current_profile -%>
+				<%- if current_profile.following_profile?(@profile) -%>
+					<%= link_to '-', unfollow_profile_path(@profile), class: 'glyph', id: 'follow-link', method: :delete %>
+					<%# link_to 'customize', customize_profile_streams_path(@profile) %>
+				<%- else -%>
+					<%= link_to '+', follow_profile_path(@profile), class: 'glyph', id: 'follow-link', method: :post %>
+				<%- end -%>
+					<%= link_to raw('&#x219D;'), new_profile_message_path(@profile), class: 'glyph' %>
+				<%- end -%>
+			</h1>
+			<h2><%= link_to "@#{@profile.url_name}", profile_home_path(@profile.url_name) %></h2>
+			<p><%= @profile.bio %></p>
+			<div class="location"><%= @profile.location %></div>
+			<div class="site"><%= @profile.homepage %></div>
+		</div>
+		<div class="extra">
+		<%- if not @public_filters.blank? -%>
+			<div class="filters">
+				Filters:
+				<%= raw(@public_filters.collect { |filter| link_to(filter.name, profile_filter_path(@profile, filter)) }.join(', ')) %>
+			</div>
+		<%- end -%>
+		<%- if current_profile -%>	
+			<div class="tags">
+				<%- if @relation_tags.blank? -%>
+					<%= link_to 'Tags', profile_tags_path(@profile) %>
+				<%- else -%>
+					<span class="glyph">&#x21F8;</span>
+					<%= @relation_tags.collect { |tag| "##{tag}" }.join(' ') %>
+				<%- end -%>
+			</div>
+		<%- end -%>
+		<%- if not @other_profiles.blank? -%>
+			<div class="profiles">
+				Other Profiles
+				<div class="pics">
+			<%- @other_profiles.each do |profile| %>
+				<%= link_to image_tag(url_for_profile_pic(profile, size: :pixels_48)), profile_home_path(profile.url_name) %>
+			<%- end -%>
+				</div>
+			</div>
+		<%- end -%>
+		</div>
+	</div>
+	<div class="nav">
+		<ul class="nav">
+			<li><%= link_to 'Submissions', profile_submissions_path(@profile) %></li>
+			<li><%= link_to 'Journals', profile_journals_path(@profile) %></li>
+			<li><%# "Following (#{@following_count})" %></li>
+			<li><%# "Followers (#{@followers_count})" %></li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+</div>

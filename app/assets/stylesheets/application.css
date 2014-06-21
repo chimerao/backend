@@ -1,0 +1,1190 @@
+/* Fonts */
+@font-face {
+  font-family: 'ChimeraoGlyphs';
+  src: url('/fonts/ChimeraoGlyphs.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+.glyph {
+  font-family: 'ChimeraoGlyphs';
+}
+
+/* Hide the abnormally large svg tags (still needs to be "visible" tho) */
+svg {
+  height: 0;
+  width: 0;
+}
+
+/* Reset most tag styles */
+body, h1, h2, h3, h4, h5, h6, div, span, a, p, blockquote, ul, li, img, form, fieldset, label, button, input[type="text"], input[type="password"], input[type="checkbox"], textarea, table, tr, td, th {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  text-decoration: none;
+  font-size: 1em;
+  line-height: 1em;
+  background: none;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+  background: rgb(216,216,216);
+  min-width: 1000px;
+  color: rgb(0,0,0);
+  padding-top: 52px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin: 0 0 0.5em 0;
+}
+h1 {
+  font-size: 22pt;
+}
+h2 {
+  font-size: 16pt;
+}
+h3 {
+  font-size: 14pt;
+}
+h4 {
+  font-size: 12pt;
+}
+h5 {
+  font-size: 10pt;
+}
+h6 {
+  font-size: 9pt;
+}
+
+p {
+  line-height: 1.35em;
+}
+/*
+a {
+  color: rgb(52,33,194);
+  text-shadow: rgb(244,244,244) 0 0 1px;
+  -webkit-transition: color 0.2s linear;
+}
+a:hover { color: rgb(100,71,242);
+}
+*/
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: rgb(0,96,224);
+}
+a:visited,
+a:hover {
+  color: rgb(192,72,192);
+}
+a:active {
+  color: rgb(224,96,0);
+}
+
+div.tags a,
+div.tags a:visited {
+  color: rgb(0,96,224);
+}
+div.tags a:hover {
+  color: rgb(192,72,192);
+}
+div.tags a:active {
+  color: rgb(224,96,0);
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.clear {
+  clear: both;
+}
+div.clear-left {
+  clear: left;
+}
+div.clear-right {
+  clear: right;
+}
+
+/* Forms */
+label {
+  display: block;
+  color: rgb(64,64,64);
+  padding: 0.5em 0 0 0.9em;
+  margin: 0 0 0.5em 0;
+  clear: both;
+}
+input[type="text"],
+input[type="password"] {
+  display: block;
+  font-size: 1.5em;
+  width: 15em;
+  margin: 0 1em 0.5em 0.5em;
+  clear: both;
+  float: left;
+  padding: 0.4em;
+  border: 1px solid rgb(152,152,152);
+  color: rgb(0,0,0);
+  background: rgb(255,255,255);
+  border-radius: 4px;
+}
+/*
+input[type="checkbox"] {
+  float: left;
+  width: 28px;
+  height: 28px;
+  -webkit-appearance: none;
+  background: url(/images/checkbox-sprite.png) no-repeat 0 0;
+  margin: 0 0.5em 0 0.6em;
+  position: relative;
+  bottom: 0.5em;
+}
+input[type="checkbox"]:checked {
+  background: url(/images/checkbox-sprite.png) no-repeat 0 -28px;
+}
+input[type="radio"] {
+  float: left;
+  width: 23px;
+  height: 23px;
+  -webkit-appearance: none;
+  background: url(/images/radio-sprite.png) no-repeat 0 0;
+  margin: 0 1.1em 0 0.8em;
+  position: relative;
+  bottom: 0.4em;
+}
+input[type="radio"]:checked {
+  background: url(/images/radio-sprite.png) no-repeat 0 -23px;
+}
+*/
+textarea {
+  display: block;
+  font-size: 1em;
+  clear: both;
+  padding: 0.4em;
+  border: 1px solid rgb(152,152,152);
+  color: rgb(0,0,0);
+  background: rgb(255,255,255);
+  border-radius: 4px;
+}
+button,
+a.button {
+  display: block;
+  clear: both;
+  padding: 0.45em 1.25em 0.6em 1.25em;
+  margin: 1.25em 0 1em 0.6em;
+  border-radius: 6px;
+  font-weight: bold;
+  color: rgb(255,255,255);
+  text-shadow: rgba(0,0,0,0.2) 0 -1px 1px;
+  background: rgb(96,128,24);
+  box-shadow: rgba(0,0,0,0.2) 0 2px 2px;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+}
+button:hover,
+a.button:hover {
+  background: rgb(160,192,36);
+}
+button:active,
+a.button:active {
+  text-shadow: rgba(0,0,0,0.2) 0 -1px 2px;
+  background: rgb(88,120,20);
+  box-shadow: rgba(0,0,0,0.2) 0 -1px 2px;
+  position: relative;
+  top: 1px;
+}
+a.button {
+  display: inline;
+}
+button:disabled {
+  opacity: 0.5;
+  background: rgb(96,128,24);
+  box-shadow: rgba(0,0,0,0.2) 0 2px 2px;
+  top: 0;
+}
+button.cancel,
+a.button.cancel {
+  background: rgb(172,74,58);
+}
+button.cancel:hover,
+a.button.cancel:hover {
+  background: rgb(220,118,70);
+}
+button.cancel:active,
+a.button.cancel:active {
+  background: rgb(195,67,63);
+}
+
+/* Flash notices and errors */
+div.flash {
+  clear: both;
+  width: 100%;
+  color: rgb(52,52,52);
+  margin: 0;
+  padding: 0.75em;
+  text-align: center;
+  text-shadow: rgb(224,224,224) 0 0 1px;
+  line-height: 1em;
+}
+div.flash#success {
+  background: rgb(204,255,24);
+}
+div.flash#notice {
+  background: rgb(124,248,255);
+}
+div.flash#warning {
+  background: rgb(244,244,12);
+}
+div.flash#error {
+  background: rgb(255,72,84);
+}
+
+
+/* Header, content, and footer */
+
+div#header {
+  background: rgb(112,112,116);
+  color: rgb(255,255,255);
+  height: 52px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  min-width: 768px;
+}
+div#header a {
+  color: rgb(255,255,255);  
+}
+div#header div.glyph {
+  font-size: 42px;
+  padding: 5px;
+}
+div#header > div.logo {
+  position: absolute;
+  font-size: 40px;
+  left: 50%;
+  top: 6px;
+}
+div#header a div.nav-text {
+  padding: 18px 0 0 0.5em;
+  float: left;
+}
+div#header > div.left-nav div.glyph {
+  float: left;
+  margin-left: 0.5em;
+}
+div#header > div.right-nav div.glyph {
+  float: right;
+  margin-right: 0.5em;
+}
+div#header > div.right-nav > div.profile {
+  float: right;
+  margin-right: 1em;
+  width: 68px;
+  height: 52px;
+  position: relative;
+}
+div#header > div.right-nav div.profile-pic > a {
+  width: 52px;
+  height: 52px;
+}
+div#header > div.right-nav div.profile-pic img {
+  width: 52px;
+  height: 52px;
+}
+div#header > div.right-nav a#profile-select {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15px;
+  height: 32px;
+  padding: 20px 0 0 1px;
+  background: rgb(142,142,146);
+  font-size: 0.8em;
+}
+div#header div#profile-select-box {
+  background: rgb(255,255,255);
+  color: rgb(0,0,0);
+  text-shadow: none;
+  width: 264px;
+  height: 140px;
+  position: absolute;
+  top: 52px;
+  right: -18px;
+  border-radius: 2px;
+  box-shadow: 0 0 3px rgb(32,32,32);
+  z-index: 1000;
+}
+div#header div#profile-select-box > div.profile-select-title {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 4px 0 4px 8px;
+}
+div#header div#profile-select-box > ul > li.profile-select-row {
+  width: 256px;
+  height: 48px;
+  padding: 4px 4px;
+  cursor: pointer;
+}
+div#header div#profile-select-box > ul > li.profile-select-row:hover {
+  background: rgb(236,236,255);
+}
+div#header div#profile-select-box > ul > li.profile-select-row > img {
+  float: left;
+  padding-right: 4px;
+}
+div#header div#profile-select-box > ul > li.profile-select-row > span {
+  line-height: 48px;
+}
+div#header div#settings {
+  cursor: pointer;
+}
+div#header a.header-messages {
+  position: relative;
+  display: block;
+  float: right;
+}
+div#header div.message-count {
+  font-weight: bold;
+  font-size: 12px;
+  color: rgb(0,0,0);
+  background: rgb(255,255,255);
+  position: absolute;
+  left: 28px;
+  top: 8px;
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid rgb(112,112,116);
+  border-radius: 12px;
+  min-width: 12px;
+}
+
+/* Temp header placements */
+div#header div.right-nav a#login-link,
+div#header div.right-nav a#sign-up-link,
+div#header div.right-nav div.separator {
+  font-size: 1.1em;
+  float: right;
+  margin: 0.75em 1em 0 0;
+}
+
+/* Menus */
+div.menu {
+  background: rgb(255,255,255);
+  color: rgb(0,0,0);
+  text-shadow: none;
+  width: 10em;
+  height: 5em;
+  position: absolute;
+  padding: 1em 0;
+  border-radius: 2px;
+  box-shadow: 0 0 3px rgb(32,32,32);
+  z-index: 1100;
+}
+div.menu a {
+  color: rgb(0,0,0);
+  display: block;
+  padding: 0.5em 0 0.5em 1em;
+  margin-bottom: 0.25em;
+  width: 9em;
+}
+div.menu a:hover {
+  background: rgb(236,236,255);
+}
+div#settings > div.menu {
+  top: 52px;
+  right: 18px;
+}
+div#header div.menu a {
+  color: rgb(0,0,0);
+}
+
+/* Content */
+
+div#content {
+  clear: both;
+  background: rgb(244,244,244);
+}
+
+/* Profile banner */
+div#banner.no-image {
+  background: rgb(232,232,232);
+  height: 256px;
+  margin-bottom: 8px;
+  position: relative;
+}
+div#banner.image {
+  height: 442px;
+  margin-bottom: 8px;
+  position: relative;
+}
+div#banner > a,
+div#banner h1 a,
+div#banner h2 a {
+  color: rgb(0,0,0);
+}
+div#banner h1, h2 {
+  font-weight: normal;
+  margin-bottom: 0.3em;
+}
+div#banner h1 {
+  margin: 0 0 0.25em 0;
+  font-size: 26pt;
+}
+div#banner h2 {
+  font-size: 18pt;
+}
+div#banner p {
+  line-height: 1.25em;
+  margin-bottom: 0.8em;
+}
+div#banner.image p {
+  clear: left;
+}
+div#banner.no-image > img.profile-pic,
+div#banner.no-image > a > img.profile-pic {
+  float: left;
+  margin-right: 1.5em;
+  width: 256px;
+  height: 256px;
+}
+div#banner.image img.profile-pic {
+  float: left;
+  margin: -0.2em 0.5em 0.25em -0.3em;
+  width: 80px;
+  height: 80px;
+  border-radius: 3px;
+}
+div#banner.image div.banner-image {
+  height: 400px;
+}
+div#banner.no-image > div.primary {
+  width: 48em;
+  padding: 1em 0 0 0;
+}
+div#banner.image div.primary {
+  width: 47em;
+  padding: 1em 0 0 2em;
+}
+div#banner div.profiles > div.pics {
+  clear: left;
+}
+div#banner div.profiles > div.pics img {
+  border-radius: 3px;
+}
+div#banner div.location {
+  line-height: 1.25em;
+}
+div#banner div.site {
+  line-height: 1.25em;
+}
+div#banner.no-image > div.extra {
+  margin: 1.25em 1.5em 0 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+div#banner.image div.extra {
+  padding: 1em 0 0 2em;
+}
+div#banner > div.extra div.tags span.glyph {
+  font-size: 1.5em;
+  line-height: 0.75em;
+}
+div#banner div.nav {
+  height: 42px;
+  width: 100%;
+  background: rgb(232,232,232);
+}
+div#banner ul.nav {
+  width: 20em;
+  margin: 0 auto;
+}
+div#banner ul.nav > li {
+  float: left;
+  width: 10em;
+  padding: 10px 0 0 0;
+  text-align: center;
+}
+div#banner.no-image div.nav {
+  background: none;
+  position: absolute;
+  bottom: 0;
+}
+
+
+/* Thumbnails */
+
+div#thumbnails {
+  clear: both;
+}
+div#thumbnails > div {
+  float: left;
+  width: 324px;
+  height: 288px;
+}
+a.thumbnail {
+  display: block;
+  float: left;
+  margin: 14px 0 14px 14px;
+  border-radius: 6px;
+  text-align: center;
+  width: 260px;
+  height: 260px;
+}
+/* a.thumbnail:hover {
+  background: rgb(255,255,224);
+} */
+a.thumbnail > img {
+  box-shadow: rgba(0,0,0,0.3) 0 0 4px;
+  border-radius: 3px;
+  transition: -webkit-filter 0.15s;
+}
+a.thumbnail > img.filtered {
+  -webkit-filter: blur(4px);
+}
+a.thumbnail > img.filtered:hover {
+  -webkit-filter: none;
+}
+a.thumbnail > img:active {
+  box-shadow: none;
+}
+div#thumbnails > div > div.data {
+  font-size: 14px;
+  float: left;
+  width: 36px;
+  height: 60px;
+  position: relative;
+}
+div#thumbnails > div > div.data > ul > li {
+  color: rgb(128,128,128);
+  margin-bottom: 4px;
+}
+div#thumbnails > div > div.data > ul > li > div {
+  font-family: 'ChimeraoGlyphs';
+  font-size: 1.2em;
+  margin-right: 4px;
+  float: left;
+}
+
+
+/* "Flow" styles, that determine what is displayed after a submission, journal, etc. */
+
+div.flow {
+  clear: both;
+  width: 800px;
+  margin: 0 auto;
+}
+div.flow > div {
+  padding: 0.4em 0;
+}
+div.flow > div.head {
+  position: relative;
+}
+div.flow > div.head > div.folder {
+  clear: left;
+  height: 1em;
+  min-width: 1em;
+  margin: 0 0 0.4em 0.3em;
+}
+div.flow > div.head > div.social {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12em;
+}
+div.flow > div.head > div.social > form > input {
+  float: right;
+  width: 12em;
+}
+div.flow > div.head > div.social > div.fave input {
+  float: right;
+  width: 6em;
+}
+div.flow > div.head > ul.metadata {
+  clear: both;
+}
+div.flow > div.head > ul.metadata > li {
+  color: rgb(128,128,128);
+  float: left;
+  height: 1.5em;
+  margin-right: 2em;
+}
+div.flow > div.head > ul.metadata > li > span {
+  font-family: 'ChimeraoGlyphs';
+  margin-right: 4px;
+  font-size: 1.2em;
+}
+div.flow > div.series > div {
+  width: 400px;
+  min-height: 10px;
+  float: left;
+}
+div.flow > div.series > div div.glyph {
+  font-size: 48px;
+}
+div.flow > div.series > div.previous div.glyph {
+  float: left;
+}
+div.flow > div.series > div.next div.glyph {
+  float: right;
+}
+div.flow > div.series > div.next img {
+  float: right;
+}
+div.flow > div.tags {
+  clear: both;
+}
+div.flow > div.replies {
+  clear: both;
+  border-top: solid rgb(172,172,172) 1px;
+}
+div.flow > div.replies input {
+  width: 18em;
+}
+
+/* Submission-specific flow styles */
+
+div.flow > div.head > h1.submission.title {
+  width: 20em;
+  float: left;
+  margin-bottom: 0.2em;
+}
+div.collaborators {
+  clear: both;
+  border-top: solid rgb(172,172,172) 1px;
+  height: 80px;
+}
+div.collaborators > div.collaborator {
+  float: left;
+  width: 160px;
+  height: 80px;
+}
+div.collaborators > div.collaborator > a {
+  float: left;
+}
+div.collaborators > div.collaborator > a > img {
+  width: 80px;
+  height: 80px;
+  margin-right: 0.2em;
+}
+div.submission.flow > div.description {
+  clear: both;
+  border-top: solid rgb(172,172,172) 1px;
+}
+div.submission.flow > div.series {
+  clear: both;
+  border-top: solid rgb(172,172,172) 1px;
+}
+
+
+/* Discussions (Comments) */
+
+div.discussion {
+  border-top: solid rgb(172,172,172) 1px;
+  margin: 1em auto 0 auto;
+}
+div.discussion li.comment {
+  clear: left;
+  margin: 0 0 0 0;
+  padding: 1em 0 0 1em;
+}
+div.discussion li.comment div.profile-pic {
+  float: left;
+}
+div.discussion li.comment div.profile-pic > a,
+div.discussion li.make-comment div.profile-pic div.profile-pic-image {
+  display: block;
+  width: 96px;
+  height: 96px;
+  margin: 0 1em 0 0;
+}
+div.discussion li.comment div.profile-pic > a > img,
+div.discussion li.make-comment div.profile-pic img {
+  box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+}
+div.discussion li.comment > div.profile-pic > a > img:active,
+div.discussion li.make-comment div.profile-pic img:active {
+  box-shadow: none;
+}
+div.discussion li.comment > div.name,
+div.discussion li.make-comment div.name {
+  float: left;
+  min-width: 12em;
+}
+
+div.discussion li.comment div.text,
+div.discussion li.make-comment div.text {
+  border: 1px solid rgb(172,172,172);
+  border-radius: 6px;
+  padding: 20px;
+  background: rgb(255,255,255);
+}
+div.discussion li.make-comment div.text {
+  margin-top: 0.5em;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+div.discussion li.comment > div.vote {
+  float: right;
+  width: 6em;
+}
+div.discussion li.comment > div.vote > span {
+  float: left;
+  width: 2em;
+}
+div.discussion li.comment div.bubble {
+  clear: right;
+}
+div.discussion li.comment div.bubble {
+  float: left;
+  width: 76%;
+}
+div.discussion li.comment > div.bubble div.comment-stats {
+  font-size: 0.7em;
+  color: rgb(142,142,142);
+  margin: 1px 0.4em 0 0;
+  float: right;
+}
+
+div.discussion li.comment > div.controls {
+  float: right;
+  width: 3em;
+  margin: 0.25em 0 0 0;
+  text-align: center;
+}
+div.discussion li.comment > div.controls > a {
+  line-height: 1.5em;
+}
+
+div.discussion > ul#comments li.make-comment > form textarea {
+  background: rgb(255,255,255);
+  font-size: 1em;
+  height: 6em;
+  width: 97%;
+  outline: none;
+  border: 1px solid rgb(172,172,172);
+}
+div.discussion > ul#comments li.make-comment > form button {
+  float: left;
+  margin: 0.5em 0 0 114px;
+}
+div.discussion > ul#comments li.make-comment > form div.attach-image {
+  clear: both;
+  margin: 0.5em 0 0.5em 7.25em;
+  color: rgb(132,132,132);
+  cursor: pointer;
+}
+div.discussion > ul#comments li.make-comment > form div.attach-image > span {
+  font-size: 1.2em;
+  color: rgb(32,172,16);
+}
+div.discussion > ul#comments li.make-comment > form input.comment-image-input {
+  clear: both;
+  margin: 0.5em 0 0.5em 10.5em;
+  display: none;
+}
+
+
+/* Pose comment adjustments */
+div.discussion li.comment.pose > div.name {
+  display: none;
+}
+div.discussion li.comment.pose div.text {
+  background: none;
+  border: none;
+  padding: 0;
+  min-height: 72px;
+}
+
+/* Profile pic select */
+
+div.profile-pic-selectable {
+  position: relative;
+  cursor: pointer;
+}
+div#profile-pic-select {
+  background: rgb(255,255,255);
+  width: 162px;
+  height: 148px;
+  padding: 4px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1010;
+  position: absolute;
+  left: -64px;
+  top: -8px;
+  box-shadow: 0 0 3px rgb(32,32,32);
+  border-radius: 2px;
+  float: left;
+}
+div#profile-pic-select li {
+  float: left;
+  padding: 4px;
+}
+div#profile-pic-select li > img {
+  box-shadow: none;
+}
+div#profile-pic-select p {
+    text-align: center;
+    margin-top: 48px;
+}
+
+
+
+/* Modal dialog boxes and related elements */
+
+body > div#cast {
+  background-color: rgba(0,0,0,0.3);
+/*  opacity: 0.3;
+  filter: alpha(opacity=30); */
+  z-index: 20;
+  height: 100%;
+  width: 100%;
+  background-repeat: repeat;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+div#modal {
+  text-align: center;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 100;
+}
+div#modal h1 {
+  font-size: 16pt;
+  margin: 0 0 0.5em 0;
+  font-weight: bold;
+}
+div#modal > div.dialog {
+  background: rgba(123,161,27,0.7);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0px 5px rgba(0,0,0,0.3);
+  width: 400px;
+  height: 300px;
+  margin: 200px auto 0 auto;
+}
+div#modal > div.dialog > div {
+  background: rgb(244,244,244);
+  border-radius: 4px;
+  overflow: hidden;
+  padding: 10px;
+  height: 280px;
+}
+div#modal > div.dialog > div > div#modal-cancel {
+  float: right;
+  color: rgba(82,16,0,0.3);
+  background: rgba(250,107,67,0.08);
+  width: 22px;
+  height: 20px;
+  text-align: center;
+  position: relative;
+  left: 1em;
+  cursor: pointer;
+  clear: both;
+}
+div#modal > div.dialog > div > div#modal-cancel:hover {
+  color: rgba(82,16,0,0.7);
+  background: rgba(250,107,67,0.4);
+  text-shadow: rgba(0,0,0,0.5) 0 1px 1px;
+}
+div#modal > div.dialog > div > div#modal-cancel:active {
+  text-shadow: none;
+}
+div#modal > div.dialog > div div#user-pic-select {
+  bottom: 100px;
+  right: 0;
+  margin-bottom: -160px;
+}
+
+div#modal > div.login.dialog {
+  width: 22em;
+  height: 15.5em;
+  text-align: left;
+  margin: 250px auto 0 auto;
+}
+div#modal > div.login.dialog > div {
+  height: 14em;
+  padding: 0.5em 1em 1em 1em;
+}
+div#modal > div.login.dialog > div > form > input {
+  display: block;
+  font-size: 1.25em;
+  margin: 0 0 0.25em 0.5em;
+  clear: both;
+}
+div#modal > div.login.dialog > div > form > input[type="text"],
+div#modal > div.login.dialog > div > form > input[type="password"] {
+  color: rgb(216,216,216);
+  padding: 0.2em;
+  border: 1px solid rgb(152,152,152);
+  background: rgb(255,255,255);
+  border-radius: 4px;
+}
+
+div#modal > div.comment.dialog {
+  width: 33em;
+  height: 13.25em;
+}
+div#modal > div.comment.dialog > div {
+  text-align: left;
+  height: 12em;
+}
+div#modal > div.comment.dialog > div > form button {
+  float: left;
+  margin: 1em 0 0 6.5em;
+}
+div#modal > div.comment.dialog > div > div#modal-cancel {
+  position: relative;
+  left: 10px;
+  top: 20px;
+}
+
+div#modal > div.flag.dialog {
+  width: 26em;
+  height: 13.25em;
+}
+div#modal > div.flag.dialog > div {
+  text-align: left;
+  height: 12em;
+}
+div#modal > div.flag.dialog > div > form button {
+  float: left;
+  margin: 1em 0 0 6.5em;
+}
+div#modal > div.flag.dialog > div > div#modal-cancel {
+  position: relative;
+  left: 10px;
+  top: 20px;
+}
+
+div#modal > div.message.dialog {
+  width: 33em;
+  height: 20.25em;
+  margin-top: 160px;
+}
+div#modal > div.message.dialog > div > h1 {
+  margin-bottom: 1em;
+  color: #000;
+  text-shadow: none;
+}
+div#modal > div.message.dialog > div {
+  text-align: left;
+  height: 19em;
+}
+div#modal > div.message.dialog > div > form button {
+  float: left;
+  margin: 1em 0 0 6.5em;
+}
+div#modal > div.message.dialog > div > form div.text {
+  height: 12em;
+}
+div#modal > div.message.dialog > div > form textarea {
+  height: 85%;
+}
+div#modal > div.message.dialog > div > div#modal-cancel {
+  position: relative;
+  left: 10px;
+  top: 5px;
+}
+
+/* Controller specific styles */
+
+div#content.users.new h1 {
+  text-align: center;
+  margin-bottom: -0.1em;
+  padding-bottom: 0;
+}
+div#content.users.new fieldset {
+  margin: 0 auto;
+  width: 430px;
+}
+
+div#content.user_sessions.new h1 {
+  text-transform: capitalize;
+  text-align: center;
+}
+div#content.user_sessions.new fieldset {
+  margin: 0 auto;
+  width: 430px;
+}
+
+div#content.profiles.new h1, div#content.create h1, div#content.edit h1 {
+  text-align: center;
+}
+div#content.profile_journals.edit h1 {
+  text-align: left;
+}
+div#content.profiles.new fieldset, div#content.create, div#content.edit fieldset {
+  margin: 0 auto;
+  width: 450px;
+}
+div#content.profiles.new h2 {
+  margin: 0 auto;
+  width: 450px;
+}
+div#content.profiles.new p.welcome {
+  margin: 0 auto;
+  width: 450px;
+}
+
+div#profile-container {
+  position: relative;
+  min-height: 500px;
+}
+div.widget {
+  position: absolute;
+  padding: 0 2% 0 2%;
+}
+/*
+div#content.profiles div#submissions {
+  float: left;
+  width: 55%;
+  padding: 0 2% 0 2%;
+}
+div#content.profiles div#journals {
+  float: left;
+  width: 35%;
+  padding: 0 2% 0 2%;
+}
+*/
+div#content.submissions div.image { text-align: center; clear: both; padding-top: 8px; }
+div#content.submissions div.image img { box-shadow: rgba(0,0,0,0.3) 0 0 16px;  }
+
+div#content.submissions div.submission-group {
+    width: 100%;
+    max-height: 720px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+div#content.submissions div.submission-group > div {
+    width: 3000px;
+    height: 700px;
+}
+div#content.submissions div.submission-group div.image {
+    float: left;
+    clear: none;
+}
+
+/* Submission Form */
+div#content.profile_submissions.unpublished h1 {
+  text-align: center;
+}
+div#content.profile_submissions.unpublished fieldset {
+  width: 450px;
+  margin: 0 auto;
+}
+div#content.profile_submissions.unpublished fieldset button {
+  margin: 0 auto;
+  margin-bottom: 2em;
+}
+div#content.profile_submissions img.progress {
+  height: 90%;
+  width: 0%;
+  border-radius: 2px;
+  display: block;
+  position: relative;
+  top: -280px;
+}
+div#content.profile_submissions div.delete {
+  position: relative;
+  top: 20px;
+  cursor: pointer;
+}
+
+div#content.profile_submissions.edit h1,
+div#content.profile_submissions.new h1,
+div#content.profile_submissions.reply h1,
+div#content.profile_submissions.series h1 {
+  text-align: center;
+}
+fieldset.submission {
+  width: 600px;
+  margin: 0 auto;
+}
+fieldset.submission div.group-wrapper {
+  padding: 8px;
+  margin: 0 0 0 1em;
+  border: 1px solid rgb(152,152,152);
+  border-radius: 4px;
+}
+fieldset.submission ul.submission-group {
+  width: 600px;
+  min-height: 112px;
+}
+fieldset.submission ul.submission-group > li.image {
+  float: left;
+  width: 96px;
+  height: 96px;
+  display: block;
+  margin: 0 auto;
+}
+fieldset.submission ul.submission-group > li.image img {
+}
+fieldset.submission > input {
+  width: 600px;
+}
+fieldset.submission > div.description {
+  width: 606px;
+  height: 100px;
+  margin: 0 0 0.5em 0.75em;
+  font-size: 1em;
+  clear: both;
+  padding: 0.4em;
+  border: 1px solid rgb(152,152,152);
+  color: rgb(0,0,0);
+  background: rgb(255,255,255);
+  border-radius: 4px;
+  overflow: auto;
+}
+fieldset.submission #select-image {
+  background: rgb(255,255,255);
+  border: solid 1px rgb(164,164,164);
+  box-shadow: 0 0 3px rgb(172,172,172);
+  position: absolute;
+  width: 320px;
+  height: 300px;
+  z-index: 1010;
+  overflow-y: auto;
+  display: none;
+}
+fieldset.submission #select-image li {
+  float: left;
+  width: 96px;
+  height: 96px;
+  margin: 2px;
+}
+fieldset.submission textarea#submission_description {
+  display: none;
+}
+
+fieldset.submission ul#common-tags {
+  clear: both;
+  height: 1em;
+}
+fieldset.submission ul#common-tags > li {
+  float: left;
+  margin-right: 1em;
+  cursor: cell;
+}
+fieldset.submission div#filters {
+  clear: both;
+  margin-top: 1em;
+}
+fieldset.submission div#filters > label {
+  clear: none;
+  float: left;
+  width: 6em;
+}

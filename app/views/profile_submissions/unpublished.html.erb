@@ -1,0 +1,26 @@
+<h1>Unpublished Submissions</h1>
+
+<%= form_for @submission, url: profile_submissions_path(current_profile), html: { multipart: true } do |f| %>
+
+  <fieldset>
+    <%= f.file_field :file, multiple: true %>
+    <p>Browse for files, or just drag them into the browser window.</p>
+  </fieldset>
+<% end %>
+
+<div id="thumbnails">
+<%- @submissions.each do |thumb| -%>
+  <div>
+    <%= link_to image_tag(
+          thumb.image(:thumb_240),
+          :id => "thumbnail-#{thumb.id}",
+          :class => thumb.is_adult? ? 'filtered' : nil
+        ),
+        edit_profile_submission_url(@profile, thumb),
+        :class => "thumbnail" %>
+    <div id="delete-<%= thumb.id %>" class="delete">X</div>
+    <%= image_tag '/assets/progress_bar.gif', class: 'progress' %>
+  </div>
+<%- end -%>
+</div>
+<div class="clear"></div>

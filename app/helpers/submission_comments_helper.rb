@@ -1,0 +1,2 @@
+module SubmissionCommentsHelper
+end

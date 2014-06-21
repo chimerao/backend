@@ -1,0 +1,2 @@
+module StreamFavoritesHelper
+end

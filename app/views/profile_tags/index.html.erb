@@ -1,0 +1,16 @@
+<h1>Tags</h1>
+
+<%- @profile.relations_from(current_profile).each do |tag| -%>
+<p>#<%= tag %></p>
+<%- end -%>
+
+<%= form_tag profile_tags_path(@profile), method: :post %>
+	
+	<label for="tags">Add Tags ( comma separated, no # )</label>
+	<%= text_field_tag 'tags' %>
+
+	<div class="clear"></div>
+
+	<%= submit_tag 'Save' %>
+
+</form>

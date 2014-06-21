@@ -1,0 +1,22 @@
+<h1>Messages</h1>
+
+<table class="messages">
+	<tr>
+		<th>From</th>
+		<th>Subject</th>
+		<th>When</th>
+		<th></th>
+	</tr>
+	<%- @messages.each do |message| -%>
+	<tr>
+		<td><%= link_to message.sender.name, profile_home_path(message.sender.url_name) %></td>
+		<td><%= link_to message.subject, [current_profile, message] %></td>
+		<td><%= time_ago(message.created_at) %></td>
+		<td>
+			<%= form_tag [current_profile, message], method: :delete %>
+				<%= submit_tag 'delete' %>
+			</form>
+		</td>
+	</tr>
+	<%- end -%>
+</table>

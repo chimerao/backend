@@ -1,0 +1,6 @@
+<h1>New Submission</h1>
+
+<%= form_for @submission, url: profile_submissions_path(current_profile), method: :post, html: { multipart: true } do |f| %>
+
+  <%= render partial: '/profile_submissions/form', locals: { f: f } -%>
+<% end %>

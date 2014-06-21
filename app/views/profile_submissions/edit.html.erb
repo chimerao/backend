@@ -1,0 +1,6 @@
+<h1>Edit Submission</h1>
+
+<%= form_for @submission, url: profile_submission_path(current_profile, @submission), method: :patch, html: { multipart: true } do |f| %>
+
+  <%= render partial: '/profile_submissions/form', locals: { f: f } -%>
+<% end %>

@@ -1,0 +1,14 @@
+<h1><%= t(:login) %></h1>
+
+<%= form_tag user_sessions_path, :method => :post do %>
+	<fieldset>
+		<label for="email"><%= t('user_sessions.new.login') %></label>
+		<input type="text" id="email" name="email" tabindex="1" />
+		<label for="password"><%= t('activerecord.attributes.user.password') %></label>
+		<input type="password" id="password" name="password" tabindex="2" />
+		<label for="remember" class="remember">
+			<input type="checkbox" name="remember" id="remember" tabindex="3" value="1" /><%= t('remember_me') %>
+		</label>
+		<button type="submit" tabindex="4"><%= t('login') %></button>
+	</fieldset>
+<% end %>

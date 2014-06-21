@@ -1,0 +1,24 @@
+div#tabs { background: rgb(192,192,192); }
+div#tabs > ul { height: 39px; box-shadow: 0 1px 2px rgb(32,32,32); }
+div#tabs > ul > li {
+  float: left;
+  font-size: 1.4em;
+  width: 6em;
+  height: 40px;
+  text-align: center;
+  box-shadow: 1px -1px 1px rgb(32,32,32);
+  border-top-right-radius: 6px;
+  line-height: 1.6em;
+}
+div#tabs > ul > li:nth-last-child(1) { width: 2em; }
+div#tabs > ul > li.active { background: rgb(244,244,244); border-top-left-radius: 6px; height: 43px; margin-bottom: -4px; box-shadow: 1px -1px 1px rgb(32,32,32); }
+div#tabs > ul > li a { color: rgb(0,0,0); }
+
+div#wrapper { margin: 0 0 0 16em; }
+
+div#info { float: left; width: 12em; margin-left: -16em; padding: 2em 2em 2em 2em; }
+
+div#stream { padding: 2em 2em 2em 160px; border: solid black; border-width: 0 0 0 1px; }
+div#stream > div.stream-item { margin-bottom: 1em; }
+div#stream > div.stream-item > a.profile-link { float: left; margin: 0 12px 1em -140px; }
+div#stream > div.stream-item > div.profile-head { font-weight: bold; font-size: 1.1em; margin-bottom:0.5em; }

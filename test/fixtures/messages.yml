@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+raccoon_to_dragon_1:
+  id: 1
+  sender_id: 4
+  recipient_id: 1
+  subject: "Hi"
+  body: "Hey there."
+  unread: true
+  deleted: false
+  archived: false
+  sent: false
+
+raccoon_to_dragon_2:
+  id: 2
+  sender_id: 4
+  recipient_id: 1
+  subject: "Hiiiii!"
+  body: "Are you there, huh? Huh?!"
+  unread: true
+  deleted: false
+  archived: false
+  sent: false

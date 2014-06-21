@@ -1,0 +1,1 @@
+json.extract! @stream, :id, :name, :is_public, :rules

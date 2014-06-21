@@ -1,0 +1,32 @@
+<h1>New profile</h1>
+
+<%- if @first_profile -%>
+<h2>Welcome!</h2>
+
+<p class="welcome">You need to create a default profile. This will be all the stuff that represents you on our site.</p>
+<%- end -%>
+
+<%= form_for @profile, :url => profiles_path do |f| %>
+	<% if @profile.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+			<ul>
+			<% @profile.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<fieldset>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+
+		<%= f.label :site_identifier, 'Profile Identifier' %>
+		<%= f.text_field :site_identifier %>
+
+		<%= f.button 'create profile' %>
+	</fieldset>
+<% end %>
+

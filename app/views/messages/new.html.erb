@@ -1,0 +1,27 @@
+<h1>Send Message to <%= @recipient.name %></h1>
+
+<%= form_for @message, url: [current_profile, @message] do |f| %>
+	<% if @message.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+			<ul>
+			<% @message.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<fieldset>
+		<%= f.hidden_field :recipient_id, value: @recipient.id %>
+
+		<%= f.label :subject %>
+		<%= f.text_field :subject %>
+
+		<%= f.label :body %>
+		<%= f.text_area :body %>
+
+		<%= f.button 'Send' %>
+	</fieldset>
+<% end %>

@@ -1,0 +1,2 @@
+module JournalCommentsHelper
+end

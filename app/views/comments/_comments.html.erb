@@ -1,0 +1,36 @@
+<div class="discussion">
+  <ul id="comments">
+  <%= render :partial => 'comments/comment', :collection => @comments.select { |c| c.comment_id.nil? }, locals: { commentable: commentable } %>
+<%- if current_user -%>
+  <li class="comment make-comment">
+    <%= form_for @comment,
+                 :url => post_path,
+                 :html => {
+                   :id => 'comment-form',
+                   :name => 'commentform',
+                   :multipart => true
+                 } do |c| %>
+      <fieldset>
+        <div class="profile-pic">
+          <div class="profile-pic-selectable" id="profile-pic-selectable">
+            <div class="profile-pic-image">
+              <%= image_tag(url_for_profile_pic(current_profile, size: :pixels_96)) %>
+            </div>
+          </div>
+        </div>
+        <div class="name"><%= current_profile.name %></div>
+        <div class="bubble">
+          <div class="text"><div class="talk-notch"></div>
+            <%= c.text_area :body %>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="attach-image"><span class="glyph">+</span> Attach Image</div>
+        <%= c.file_field :image, { class: 'comment-image-input' } %>
+        <%= c.button t('comment.verb'), :name => 'commit' %>
+     </fieldset>
+    <%- end -%>
+  </li>
+<%- end -%>
+  </ul>
+</div>

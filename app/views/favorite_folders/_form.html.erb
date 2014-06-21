@@ -1,0 +1,21 @@
+<%= form_for @folder, :url => [@profile, @folder] do |f| %>
+	<% if @folder.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@folder.errors.count, "error") %> prohibited this folder from being saved:</h2>
+
+			<ul>
+			<% @folder.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<fieldset>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+
+		<%= f.button 'save' %>
+
+	</fieldset>
+<% end %>

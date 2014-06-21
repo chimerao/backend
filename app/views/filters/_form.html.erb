@@ -1,0 +1,30 @@
+<%= form_for @filter, url: [@profile, @filter] do |f| %>
+	<% if @filter.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@filter.errors.count, "error") %> prohibited this filter from being saved:</h2>
+
+			<ul>
+			<% @filter.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<fieldset>
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+
+		<%= f.label :description %><br>
+		<%= f.text_field :description %>
+
+		<label for="filter_opt_in">
+			<%= f.check_box :opt_in %> Opt-In
+		</label>
+
+		<%= f.label :tag_list, 'Tags (when using any of these tags on a profile, they will be added to this filter.' %>
+		<%= f.text_field :tag_list %>
+
+		<%= f.button 'Save' %>
+	</fieldset>
+<% end %>

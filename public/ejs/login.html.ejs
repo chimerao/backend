@@ -1,0 +1,17 @@
+<div id="modal">
+	<div class="login dialog">
+		<div>
+			<h1><%= Locale.get('imaginate.login_modal_title') %></h1>
+			<form action="/login" method="post"><div style="margin:0;padding:0;display:inline;"><input name="authenticity_token" type="hidden" value="<%= IG.authToken %>" /></div>
+				<input type="text" id="login" name="login" tabindex="1" value="<%= Locale.get('imaginate.login_field') %>" />
+				<input type="text" id="password" name="password" tabindex="2" value="<%= Locale.get('imaginate.password') %>" />
+				<label for="rememberme">
+					<input type="checkbox" name="rememberme" id="rememberme" tabindex="3" value="1" /><%= Locale.get('imaginate.remember_me') %>
+				</label>
+				<button type="submit" tabindex="4" /><%= Locale.get('imaginate.login') %></button>
+			</form>
+			<p><%= Locale.get('imaginate.login_no_account') %> <%= link_to(Locale.get('imaginate.sign_up_now'), '/signup')%></p>
+			<div id="modal-cancel">x</div>
+		</div>
+	</div>
+</div>

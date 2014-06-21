@@ -1,0 +1,46 @@
+<li id="comment-<%= comment.id %>" class="comment<%= ' pose' if comment.pose? %>">
+	<div class="profile-pic">
+		<%= link_to image_tag(url_for_profile_pic(comment.profile, size: :pixels_96, profile_pic: comment.profile_pic)), profile_path(comment.profile) %>
+	</div>
+	<div class="name"><%= link_to comment.profile.name, profile_path(comment.profile) %></div>
+<%- if current_profile -%>
+	<div class="vote">
+		<span>+<%= comment.votes.count %></span>
+		<%- if current_profile.has_voted_on?(comment) -%>
+		<%= form_tag unvote_comment_path(comment), method: :delete %>
+			<%= submit_tag '-vote' %>
+		</form>
+		<%- else -%>
+		<%= form_tag vote_comment_path(comment), method: :post %>
+			<%= submit_tag '+vote' %>
+		</form>
+		<%- end -%>
+	</div>
+<%- end -%>
+	<div class="bubble">
+		<div class="text"><div class="talk-notch"></div>
+			<%= imaginate_format(comment.enhanced_body) %>
+		<%- if comment.has_image? -%>
+			<%= link_to image_tag(comment.image(:large)), comment.image.url, :target => '_new' %>
+		<%- end -%>
+		</div>
+		<div class="comment-stats">
+			<%= time_ago(comment.created_at) %>
+		</div>
+	</div>
+<%- if current_profile -%>
+	<div class="controls">
+		<%= link_to raw("<span>#{t('reply')}</span>"), polymorphic_path([commentable, :comments]), :class => 'reply' %>
+	<%- if comment.profile_has_access?(current_profile) -%>
+		<%= link_to raw("<span>#{t('delete')}</span>"), [commentable, comment], :class => 'delete' %>
+	<%- end -%>
+	</div>
+<%- end -%>
+	<%- children = @comments.select { |c| c.comment_id == comment.id } -%>
+	<%- if !children.blank? -%>
+	<ul>
+		<%= render(:partial => 'comments/comment', :collection => children, locals: { commentable: commentable }) %>
+	</ul>
+	<%- end -%>
+	<div class="clear"></div>
+</li>

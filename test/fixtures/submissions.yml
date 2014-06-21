@@ -1,0 +1,174 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+dragon_image_1:
+  id: 1
+  profile_id: 1
+  title: Dragon
+  url_title: dragon
+  description: A dragon!
+  views: 0
+  width: 1000
+  height: 1000
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  published_at: <%= 1.days.ago.to_s :db %>
+  file_file_name: sample.jpg
+  file_content_type: image/jpeg
+  file_file_size: 500000
+  file_updated_at: <%= 1.days.ago.to_s :db %>
+  type: SubmissionImage
+
+lion_image_1:
+  id: 2
+  profile_id: 3
+  title: Lion
+  url_title: lion
+  description: A lion!
+  views: 0
+  width: 1000
+  height: 1000
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  published_at: <%= 1.days.ago.to_s :db %>
+  file_file_name: sample.jpg
+  file_content_type: image/jpeg
+  file_file_size: 500000
+  file_updated_at: <%= 1.days.ago.to_s :db %>
+  type: SubmissionImage
+
+lion_image_2:
+  id: 3
+  profile_id: 3
+  title: Another Lion
+  url_title: another-lion
+  description: A lion!
+  views: 0
+  width: 1000
+  height: 1000
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  published_at: <%= 1.days.ago.to_s :db %>
+  file_file_name: sample.jpg
+  file_content_type: image/jpeg
+  file_file_size: 500000
+  file_updated_at: <%= 1.days.ago.to_s :db %>
+  type: SubmissionImage
+
+dragon_friend_submission_1:
+  id: 4
+  profile_id: 1
+  title: Dragon Friend
+  url_title: dragon-friend
+  description: A dragon!
+  views: 0
+  width: 1000
+  height: 1000
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  published_at: <%= 1.days.ago.to_s :db %>
+  file_file_name: sample.jpg
+  file_content_type: image/jpeg
+  file_file_size: 500000
+  file_updated_at: <%= 1.days.ago.to_s :db %>
+  type: SubmissionImage
+
+dragon_unpublished_image_1:
+  id: 5
+  profile_id: 1
+  title: Untitled
+  url_title: untitled
+  description: This isn't ready yet.
+  views: 0
+  width: 1000
+  height: 1000
+  created_at: <%= 2.hours.ago.to_s :db %>
+  updated_at: <%= 2.hours.ago.to_s :db %>
+  file_file_name: sample.jpg
+  file_content_type: image/jpeg
+  file_file_size: 500000
+  file_updated_at: <%= 1.days.ago.to_s :db %>
+  type: SubmissionImage
+
+dragon_unpublished_image_2:
+  id: 6
+  profile_id: 1
+  title: Untitled
+  url_title: untitled
+  description: Nor is this one.
+  views: 0
+  width: 1000
+  height: 1000
+  created_at: <%= 2.hours.ago.to_s :db %>
+  updated_at: <%= 2.hours.ago.to_s :db %>
+  file_file_name: sample.jpg
+  file_content_type: image/jpeg
+  file_file_size: 500000
+  file_updated_at: <%= 1.days.ago.to_s :db %>
+  type: SubmissionImage
+
+lion_image_3:
+  id: 7
+  profile_id: 3
+  title: More lions
+  url_title: more-lions
+  description: More lions!
+  views: 0
+  width: 1000
+  height: 1000
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  published_at: <%= 1.days.ago.to_s :db %>
+  file_file_name: sample.jpg
+  file_content_type: image/jpeg
+  file_file_size: 500000
+  file_updated_at: <%= 1.days.ago.to_s :db %>
+  type: SubmissionImage
+
+dragon_group_submission_1:
+  id: 8
+  profile_id: 1
+  title: A pudge of dragons
+  url_title: a-pudge-of-dragon
+  description: Plenty of dragons
+  views: 0
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  published_at: <%= 1.days.ago.to_s :db %>
+  type: SubmissionGroup
+
+dragon_group_image_1:
+  id: 9
+  profile_id: 1
+  title: Dragon
+  url_title: dragon
+  description: A dragon!
+  submission_group_id: 8
+  views: 0
+  width: 1000
+  height: 1000
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  published_at: <%= 1.days.ago.to_s :db %>
+  file_file_name: sample.jpg
+  file_content_type: image/jpeg
+  file_file_size: 500000
+  file_updated_at: <%= 1.days.ago.to_s :db %>
+  type: SubmissionImage
+
+dragon_lion_collaboration_image_1:
+  id: 10
+  profile_id: 1
+  title: Dragons and Lions
+  url_title: dragon-and-lions
+  description: A dragon! And a lion!
+  views: 0
+  width: 1000
+  height: 1000
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+  published_at: <%= 1.days.ago.to_s :db %>
+  file_file_name: sample.jpg
+  file_content_type: image/jpeg
+  file_file_size: 500000
+  file_updated_at: <%= 1.days.ago.to_s :db %>
+  type: SubmissionImage

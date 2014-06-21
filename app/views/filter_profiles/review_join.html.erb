@@ -1,0 +1,11 @@
+<h2><%= image_tag url_for_profile_pic(@member, size: :pixels_64) %><%= link_to @member.name, profile_home_path(@member.url_name) %> wants to join your <%= @filter.name %> filter.</h2>
+
+<%= form_tag approve_profile_filter_member_path(@profile, @filter, @member), method: :post %>
+	<%= submit_tag 'Sure, let them in.' %>
+</form>
+
+<%= form_tag decline_profile_filter_member_path(@profile, @filter, @member), method: :delete %>
+	<%= submit_tag "Nope." %>
+</form>
+
+

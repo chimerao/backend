@@ -1,0 +1,13 @@
+<h2>You are about to ask to get ownership of the following submission:</h2>
+
+<%= image_tag @submission.image(:thumb_300) %>
+
+<%= form_tag claim_submission_path(@submission), method: :post %>
+	<%= submit_tag 'Yes, please ask.' %>
+</form>
+
+<%= form_tag submission_path(@submission), method: :get %>
+	<%= submit_tag 'No, take me back.' %>
+</form>
+
+

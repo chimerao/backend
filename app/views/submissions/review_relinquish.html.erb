@@ -1,0 +1,11 @@
+<h2><%= image_tag url_for_profile_pic(@submission.owner, size: :pixels_64) %><%= link_to @submission.owner.name, profile_home_path(@submission.owner.url_name) %> has requested ownership of this submission:</h2>
+
+<%= image_tag @submission.image(:thumb_300) %>
+
+<%= form_tag relinquish_submission_path(@submission), method: :post %>
+	<%= submit_tag 'Yes, let them have it.' %>
+</form>
+
+<%= form_tag submission_path(@submission), method: :get %>
+	<%= submit_tag "No, it's mine." %>
+</form>

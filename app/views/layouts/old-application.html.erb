@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<%= csrf_meta_tags %>
+	<meta charset=utf-8 />
+	<title><%= @page_title ? "Imaginate - #{@page_title}" : "Imaginate" %></title>
+	<%= stylesheet_link_tag 'application', media: 'all' %>
+	<%= stylesheet_link_tag controller.controller_name if controller_has_stylesheet?(controller.controller_name) %>
+	<style type="text/css">
+		div#thumbnails > div { width: <%= thumbnail_size + 84 %>px; height: <%= thumbnail_size + 48 %>px; }
+		a.thumbnail { width: <%= thumbnail_size + 20 %>px; height: <%= thumbnail_size + 20 %>px; }
+		a.thumbnail > img.filtered { filter: url(#thumbnail-blur); }
+		a.thumbnail > img.filtered:hover { filter: none; }
+	</style>
+</head>
+<body>
+
+<div id="header">
+	<div class="logo">
+		<%= link_to 'C', root_path %>
+	</div>
+	<div class="left-nav">
+	<%- if current_profile -%>
+		<%= link_to raw('<div class="glyph">&#x2302;</div><div class="nav-text">Home</div>'), dash_path %>
+		<%= link_to raw('<div class="glyph">&#x21DE;</div><div class="nav-text">Upload</div>'), unpublished_profile_submissions_path(current_profile) %>
+		<%= link_to raw('<div class="glyph">&#x270D;</div><div class="nav-text">Journal</div>'), new_profile_journal_path(current_profile) %>
+	<%- end -%>
+	</div>
+	<div class="right-nav">
+<%- if current_user -%>
+	<%- if current_profile %>
+		<div id="settings"><div class="glyph">&#x272B;</div></div>
+		<div class="profile">
+			<div class="profile-pic">
+				<%= link_to image_tag(url_for_profile_pic(current_profile, size: :pixels_48)), profile_home_path(current_profile.url_name) %>
+			</div>
+			<%= link_to raw('&#9660;'), '#', id: 'profile-select' %>
+		</div>
+		<%- if current_profile.received_messages.count > 0 -%>
+		<%= link_to raw("<div class=\"glyph mail\">&#x2709;</div><div class=\"message-count\">#{current_profile.received_messages.count}</div>"), profile_messages_path(current_profile), class: 'header-messages' %>
+		<%- else -%>
+		<%= link_to raw('<div class="glyph mail">&#x2709;</div>'), profile_messages_path(current_profile) %>
+		<%- end -%>
+		<%- if not @notifications.blank? -%>
+		<%= link_to raw('<div class="glyph">!</div>'), profile_notifications_path(current_profile) %>
+		<%- end -%>
+	<%- else -%>
+		<%= link_to t(:logout), logout_path, :id => 'login-link' %>
+	<%- end -%>
+<%- else -%>
+		<%= link_to t(:login), login_path, :id => 'login-link' %>
+		<div class="separator">-</div>
+		<%= link_to t(:sign_up), sign_up_path, :id => 'sign-up-link' %>
+<%- end -%>
+	</div>
+</div>
+
+<div id="content" class="<%= controller.controller_name %> <%= controller.action_name %>">
+<%# raw notice %>
+<%- if @use_banner -%>
+<%- if @profile.has_banner_image? -%>
+<%= render :partial => 'profiles/banner_image' %>
+<%- else -%>
+<%= render :partial => 'profiles/banner' %>
+<%- end -%>
+<%- end -%>
+<%= yield %>
+</div>
+
+<div id="footer">
+</div>
+
+<%= javascript_include_tag 'lib/zepto' %>
+<%# javascript_include_tag 'lib/jquery-2.1.1.min' %>
+<%= javascript_include_tag 'lib/underscore' %>
+<%= javascript_include_tag 'lib/backbone' %>
+<%= javascript_include_tag 'application' %>
+<%= javascript_include_tag 'marked' %>
+<%- if @use_inline_editor -%>
+<%= javascript_include_tag 'medium-editor' %>
+<%= stylesheet_link_tag 'medium-editor' %>
+<%- end -%>
+<%= locale_javascript_include_tag %>
+
+<%- if @page_script -%>
+<script type="text/javascript">
+	<%= @page_script %>
+</script>
+<%- end -%>
+
+<script type="text/javascript">
+<%- if current_profile -%>
+	Chi.currentProfile = new Chi.Profile({
+		id: <%= current_profile.id %>,
+		name: "<%= current_profile.name %>",
+		profile_pic: { pixels_96: { url: "<%= url_for_profile_pic(current_profile, size: :pixels_96) %>" } }
+	});
+<%- end -%>
+
+	Chi.controller = '<%= controller.controller_name.camelize %>';
+	Chi.action = '<%= controller.action_name %>';
+	Chi.init('<%= params[:id] %>');
+</script>
+
+</body>
+</html>

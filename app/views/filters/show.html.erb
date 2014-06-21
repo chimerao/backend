@@ -1,0 +1,46 @@
+<h1>Filter: <%= @filter.name %></h1>
+<p><%= @filter.description %></p>
+
+<%- if @profile == current_profile -%>
+<p>Opt-In: <%= @filter.opt_in %></p>
+<p>Tags: <%= @filter.tag_list.join(', ') %></p>
+
+<h2>Members</h2>
+<ul>
+<%- @filter.profiles.each do |profile| -%>
+	<li>
+		<%= link_to profile.name, profile_home_path(profile.url_name), :style => 'float:left;' %>
+		<%= form_tag profile_filter_member_path(@profile, @filter, profile.id), method: :delete %>
+			<%= submit_tag 'remove' %>
+		</form>
+	</li>
+<%- end -%>
+</ul>
+
+<br />
+<br />
+<h2>Add a new member</h2>
+<%= form_tag profile_filter_members_path(@profile, @filter), method: :post %>
+	
+	<label for="name">Name</label>
+	<%= text_field_tag 'name' %>
+
+	<%= submit_tag 'add' %>
+</form>
+
+<div class="clear"></div>
+
+<%= link_to 'Edit', edit_profile_filter_path(@profile, @filter) %>
+<%- else -%>
+<h3>
+		<%- if @filter.profiles.include?(current_profile) -%>
+		<%= form_tag join_profile_filter_path(@profile, @filter), method: :delete %>
+			<%= submit_tag(current_profile.in_filter?(@filter) ? '-leave' : 'cancel request') %>
+		</form>
+		<%- else -%>
+		<%= form_tag leave_profile_filter_path(@profile, @filter), method: :post %>
+			<%= submit_tag '+join' %>
+		</form>
+		<%- end -%>
+	</h3>
+<%- end -%>

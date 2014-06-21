@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+tidbit_for_dragon_1:
+  profile_id: 1
+  targetable_id: 2
+  targetable_type: Submission
+  created_at: <%= 1.days.ago.to_s :db %>
+
+tidbit_for_dragon_2:
+  profile_id: 1
+  targetable_id: 2
+  targetable_type: Comment
+  created_at: <%= 1.days.ago.to_s :db %>
+
+tidbit_for_dragon_3:
+  profile_id: 1
+  targetable_id: 2
+  targetable_type: Journal
+  created_at: <%= 1.days.ago.to_s :db %>
+
+tidbit_for_dragon_4:
+  profile_id: 1
+  targetable_id: 3
+  targetable_type: Journal
+  created_at: <%= 1.days.ago.to_s :db %>
+
+tidbit_for_dragon_5:
+  profile_id: 1
+  targetable_id: 3
+  targetable_type: Submission
+  created_at: <%= 1.days.ago.to_s :db %>

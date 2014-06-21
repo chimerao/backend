@@ -1,0 +1,14 @@
+<h1>Filters</h1>
+
+<ul>
+<%- @filters.each do |filter| -%>
+<li>
+	<%= link_to filter.name, profile_filter_path(@profile, filter), :style => 'float:left;' %>
+	<%= form_tag profile_filter_path(current_profile, filter), method: :delete %>
+		<%= submit_tag 'Delete' %>
+	</form>
+</li>
+<%- end -%>
+
+<li><%= link_to '+ New Filter', new_profile_filter_path(current_profile) %></li>
+</ul>

@@ -1,0 +1,92 @@
+<div class="journal wrapper">
+	<div class="journal-pic">
+		<%= link_to image_tag(url_for_profile_pic(@profile, size: :pixels_128, profile_pic: @journal.profile_pic)), profile_home_path(@profile.url_name) %>
+	</div>
+	<div class="body">
+		<h1><%= @journal.title %></h1>
+		<div class="timestamp">written <%= time_ago(@journal.published_at) %></div>
+		<%- if @journal.replyable -%>
+			<div>Reply to <%= @journal.replyable.class.to_s %>: <%= link_to @journal.replyable.title, @journal.replyable %></div>
+			<div class="clear-right"></div>
+			<br />
+		<%- end -%>
+		<%= imaginate_format(@journal.body) %>
+	</div>
+</div>
+
+<div class="journal flow">
+	<div class="head">
+		<div class="social">
+		<%- if current_profile -%>
+			<div class="fave">
+			<%- if current_profile.has_shared?(@journal) -%>
+				<%= form_tag unshare_journal_path(@journal), method: :delete %>
+					<%= submit_tag '-share' %>
+				</form>
+			<%- else -%>
+				<%= form_tag share_journal_path(@journal), method: :post %>
+					<%= submit_tag '+share' %>
+				</form>
+			<%- end -%>
+	
+			<%- if current_profile.has_faved?(@journal) -%>
+			<%= form_tag unfave_journal_path(@journal), method: :delete %>
+				<%= submit_tag '-fave' %>
+			</form>
+			<%- else -%>
+			<%= form_tag fave_journal_path(@journal), method: :post %>
+				<%= submit_tag '+fave' %>
+			</form>
+			<%- end -%>
+			</div>
+		<%- end -%>
+		</div>
+	
+		<ul class="metadata">
+			<li><span>&#x2665;</span><%= @journal.favorites_count %></li>
+			<li><span>&#x25CA;</span><%= @journal.comments_count %></li>
+			<li><span>&#x21B9;</span><%= @journal.shares_count %></li>
+			<li><span>&#x25C9;</span><%= @journal.views_count %></li>
+			<li class="report"></li>
+		</ul>
+	</div>
+	<div class="tags"><%= display_tags(@journal.tag_list) %></div>
+	<div class="series">
+<%- if @journal.in_series? -%>
+		<h4>Series</h4>
+	<%- if @journal.previous_journal -%>
+		<h6>Previous: <%= link_to @journal.previous_journal.title, @journal.previous_journal %></h6>
+	<%- end -%>
+	<%- if @journal.next_journal -%>
+		<h6>Next: <%= link_to @journal.next_journal.title, @journal.next_journal %></h6>
+	<%- end -%>
+<%- end -%>
+	<%- if @profile == current_profile -%>
+		<p><%= link_to 'Add a new journal in a series', new_series_profile_journal_path(current_profile, @journal) %></p>
+	<%- end -%>
+	</div>
+
+	<div class="replies">
+		<%- if @journal.replyable -%>
+		<h5>This is a reply to <%= @journal.replyable.class.to_s %>: <%= link_to @journal.replyable.title, @journal.replyable %></h5>
+		<%- end -%>
+		<h4>Replies</h4>
+		<ul>
+		<%- @journal.replies.each do |reply| -%>
+			<li><%= link_to reply.title, reply %></li>
+		<%- end -%>
+		</ul>
+	<%- if current_profile -%>
+		<%= form_tag reply_journal_path(@journal, replyable_type: 'submission'), method: :post %>
+			<%= submit_tag 'Reply with Submission' %>
+		</form>
+		<%= form_tag reply_journal_path(@journal, replyable_type: 'journal'), method: :post %>
+			<%= submit_tag 'Reply with Journal' %>
+		</form>
+	<%- end -%>
+	</div>
+
+	<%= render :partial => 'comments/comments', locals: { commentable: @journal, post_path: journal_comments_path(@journal) } %>
+</div>
+
+<div class="clear"></div>

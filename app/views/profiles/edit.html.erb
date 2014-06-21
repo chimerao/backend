@@ -1,0 +1,58 @@
+<h1>Editing profile</h1>
+
+<%= form_for @profile, :url => profile_path(current_profile), method: :patch do |f| %>
+	<% if @profile.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+			<ul>
+			<% @profile.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<fieldset>
+		<h2><%= link_to 'Filters', profile_filters_path(current_profile) %></h2>
+		<h2><%= link_to 'Submission Folders', profile_submission_folders_path(current_profile) %></h2>
+		<h2><%= link_to 'Favorite Folders', profile_favorite_folders_path(current_profile) %></h2>
+		<h2>
+		<%= link_to image_tag(url_for_profile_pic(current_profile, size: 'pixels_80')), profile_pics_path(@profile) %>
+		<%= link_to 'Profile Pics', profile_pics_path(@profile) %>
+		</h2>
+
+		<%= f.label :banner_image %>
+		<%= image_tag(@profile.banner_image(:preview)) %>
+		<%= f.file_field :banner_image %>
+
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+
+		<%= f.label :site_identifier, 'Profile Identifier' %>
+		<%= f.text_field :site_identifier %>
+
+		<%= f.label :bio %>
+		<%= f.text_area :bio %>
+
+		<%= f.label :location %>
+		<%= f.text_field :location %>
+
+		<%= f.label :homepage %>
+		<%= f.text_field :homepage %>
+
+	<%- if not @profiles.blank? -%>
+		<h3>Show other profiles on this one</h3>
+
+		<%- @profiles.each do |profile| -%>
+		<label for="exposed_profiles_<%= profile.id %>" class="profile">
+			<input id="exposed_profiles_<%= profile.id %>" name="profile[exposed_profiles][]" type="checkbox" value="<%= profile.id %>"<%= ' checked' if @other_profiles.include?(profile) %> />
+			<%= image_tag url_for_profile_pic(profile, size: :pixels_48) %>
+			<%= profile.name %>
+		</label>
+		<%- end -%>
+	<%- end -%>
+
+		<%= f.button 'update profile' %>
+	</fieldset>
+<% end %>

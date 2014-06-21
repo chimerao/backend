@@ -1,0 +1,44 @@
+<%= render :partial => 'streams/tabs' %>
+
+<div id="wrapper">
+	<div id="info">
+		<h4>
+			Displaying: 
+			<%= @stream.name %>
+		</h4>
+		<ul>
+			<%- @stream.rules.split(' ').each do |rule| -%>
+			<li><%= rule %></li>
+			<%- end -%>
+		</ul>
+	<%- if current_profile -%>
+		<%- if current_profile.has_faved?(@stream) -%>
+		<%= form_tag unfave_profile_stream_path(@profile, @stream), method: :delete %>
+			<%= submit_tag '-fave' %>
+		</form>
+		<%- else -%>
+		<%= form_tag fave_profile_stream_path(@profile, @stream), method: :post %>
+			<%= submit_tag '+fave' %>
+		</form>
+		<%- end -%>
+	<%- end -%>
+	<%- if @stream.profile == current_profile -%>
+		<%- if @stream.is_public? -%>
+		<%= form_tag profile_stream_path(current_profile, @stream), method: :patch %>
+			<%= hidden_field_tag 'stream[is_public]', 0 %>
+			<%= submit_tag 'Make private' %>
+		</form>
+		<%- else -%>
+		<%= form_tag profile_stream_path(current_profile, @stream), method: :patch %>
+			<%= hidden_field_tag 'stream[is_public]', 1 %>
+			<%= submit_tag 'Make public' %>
+		</form>
+		<%- end -%>
+		<%= form_tag profile_stream_path(current_profile, @stream), method: :delete %>
+			<%= submit_tag 'Delete' %>
+		</form>
+	<%- end -%>
+	</div>
+	<%= render :partial => 'streams/stream' %>
+</div>
+<div class="clear"></div>

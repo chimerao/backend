@@ -1,0 +1,66 @@
+<%= form_for [@profile, @journal] do |f| %>
+	<div class="page_controls">
+	  <ul>
+	    <li class="title"><%= controller.action_name.capitalize %> Journal</li>
+	    <li class="filter" id="filter-control">
+	      <div>Filters:</div>
+	      <div id="filter-list">
+					<%= f.collection_check_boxes(:filter_ids, @filters, :id, :name) { |f| f.label { "#{f.check_box} #{f.text}".html_safe } } %>
+	      </div>
+	    </li>
+	    <li class="tag-list">
+	      <div>Tags:</div>
+	      <%= f.text_field :tag_list, value: @journal.tag_list.collect { |tag| "##{	tag}"}.join(' ') %>
+	    </li>
+	    <li class="save"><%= link_to 'Save', '#', :id => 'page-control-save' %></li>
+	  <%- if not @journal.is_published? -%>
+	    <li class="publish"><%= link_to 'Publish', '#', :id => 'page-control-publish' %></li>
+	  <%- end -%>
+	    <li class="back"><%= link_to 'Back', profile_journals_path(@profile) %></li>
+	  </ul>
+	</div>
+	
+	<%- if @journal.replyable -%>
+	<div>
+	  <h5 style="text-align:center;">
+	    This journal is a reply to
+	    <%= @journal.replyable.class.to_s %>:
+	    <%= @journal.replyable.title %>
+	  </h5>
+	</div>
+	<div class="clear"></div>
+	<%- end -%>
+
+	<fieldset class="journal">
+		<% if @journal.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@journal.errors.count, "error") %> prohibited this journal from being saved:</h2>
+
+				<ul>
+				<% @journal.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+	<%- if @journal.in_series? -%>
+			<h5>This journal is in a series</h5>
+		<%- if @journal.previous_journal -%>
+			<h6>Previous: <%= @journal.previous_journal.title %></h6>
+			<%= f.hidden_field :journal_id %>
+		<%- end -%>
+		<%- if @journal.next_journal -%>
+			<h6>Next: <%= @journal.next_journal.title %></h6>
+		<%- end -%>
+	<%- end -%>
+
+		<h1 id="title_editable" class="title edit placeholder" contenteditable="true" data-placeholder="<%= 'Type your title here' if @journal.title.blank? %>"><%= @journal.title %></h1>
+		<%= f.text_field :title %>
+
+		<div id="body_editable" class="body editable"><%= imaginate_format(@journal.body) %></div>
+		<%= f.text_area :body %>
+
+		<%= f.button 'Save' %>
+	</fieldset>
+<% end %>

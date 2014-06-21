@@ -1,0 +1,29 @@
+<%= form_for @folder, :url => [@profile, @folder] do |f| %>
+	<% if @folder.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@folder.errors.count, "error") %> prohibited this folder from being saved:</h2>
+
+			<ul>
+			<% @folder.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<fieldset>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+
+	<%- if not @filters.blank? -%>
+		<div class="clear"></div>
+		<div id="filters"><span>Filters</span>
+			<div class="clear"></div>
+			<%= f.collection_check_boxes(:filter_ids, @filters, :id, :name) { |ff| ff.label { "#{ff.check_box} #{ff.text}".html_safe } } %>
+		</div>
+	<%- end -%>
+
+		<%= f.button 'save' %>
+
+	</fieldset>
+<% end %>

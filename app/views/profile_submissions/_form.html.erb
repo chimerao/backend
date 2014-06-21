@@ -1,0 +1,94 @@
+  <% if @submission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@submission.errors.count, "error") %> prohibited this submission from being saved:</h2>
+
+      <ul>
+      <% @submission.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset class="submission">
+  <%- if @submission.replyable -%>
+    <div>
+      <h5 style="text-align:center;">
+        This submission is a reply to
+        <%= @submission.replyable.class.to_s %>:
+        <%= @submission.replyable.title %>
+      </h5>
+    </div>
+    <%= hidden_field_tag 'submission[replyable_id]', @submission.replyable_id, id: "submission_replyable_id" %>
+    <%= hidden_field_tag 'submission[replyable_type]', @submission.replyable_type, id: "submission_replyable_type" %>
+    <div class="clear"></div>
+  <%- end -%>
+  <%- if @submission.previous_submission -%>
+    <div>
+      <h5 style="text-align:center;">
+        This submission is part of a series.
+        Previous submission: <%= @submission.previous_submission.title %>
+      </h5>
+    </div>
+    <%= hidden_field_tag 'submission[submission_id]', @submission.previous_submission.id, id: "submission_submission_id" %>
+    <div class="clear"></div>
+  <%- end -%>
+
+    <div class="group-wrapper" id="group-wrapper">
+      <ul class="submission-group" id="submission-group">
+      <%- if !@submission.new_record? -%>
+        <li class="image" id="select-submission-<%= @submission.id -%>">
+          <%= image_tag @submission.file(:thumb_96), id: "select-image-#{@submission.id}" %>
+        </li>
+      <%- end -%>
+      </ul>
+      <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+    <p style="text-align:center;">Click box to add unpublished submissions, or drag new ones into box.</p>
+
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: 'Title' %>
+
+    <%# f.label :description %>
+    <div id="description_editable" class="description editable">
+      <%= imaginate_format(@submission.description) %>
+    </div>
+    <%= f.text_area :description %>
+
+    <%= f.label :tag_list %>
+    <%= f.text_field :tag_list, value: @submission.tag_list.collect { |tag| "##{tag}" }.join(' ') %>
+
+    <%- if not @common_tags.blank? -%>
+    <label for="tags">Your Common Tags</label>
+    <ul id="common-tags">
+    <%- @common_tags.each do |tag| -%>
+      <li>#<%= tag %></li>
+    <%- end -%>
+    </ul>
+    <%- end -%>
+
+    <%- if not @filters.blank? -%>
+    <div id="filters"><span>Filter to Groups</span>
+      <div class="clear"></div>
+      <%= f.collection_check_boxes(:filter_ids, @filters, :id, :name) { |ff| ff.label { "#{ff.check_box} #{ff.text}".html_safe } } %>
+    </div>
+    <div class="clear"></div>
+    <%- end -%>
+
+    <%- if not @folders.blank? -%>
+    <div id="folders"><span>Place in folder</span>
+      <select id="submission_submission_folder_ids" name="submission[submission_folder_ids][]">
+        <%= options_for_select(@folders.collect { |folder| [folder.name, folder.id] }.unshift(['(none)', nil])) %>
+      </select>
+    </div>
+    <%- end -%>
+
+    <div id="submission_group_ids">
+      <%= hidden_field_tag 'submission_ids[]', @submission.id, id: "submission_ids_#{@submission.id}" %>
+    </div>
+
+    <%= f.button 'save' %>
+    <%= f.button 'publish', value: 'publish' %>
+  </fieldset>

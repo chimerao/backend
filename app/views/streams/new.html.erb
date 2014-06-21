@@ -1,0 +1,48 @@
+<%= form_for @stream, :url => profile_streams_path(@profile) do |s| %>
+	<% if @stream.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@stream.errors.count, "error") %> prohibited this stream from being saved:</h2>
+
+			<ul>
+			<% @stream.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<fieldset>
+		<%= s.label :name %>
+		<%= s.text_field :name %>
+
+		<div class="clear"></div>
+
+		<div style="margin-left:2em">
+		<p><strong>Rules</strong> are the raw commands that the system uses to parse streams.</p>
+		<p>These are <strong>currently open for development purposes</strong> and will be made into a more usable interface before launch.</p>
+		<p>As they are in <strong>development</strong>, they are subject to change. A lot.</p>
+		<p>The way they work is a series of simple commands, mix and match.</p>
+		<p>Examples:</p>
+
+		<code style="background:rgb(255,255,224);">
+			<br />
+			tags:dragon<br />
+			journals:all tags:pokemon<br />
+			tags:fat journals:none<br />
+			submissions:all profiles:followed tags:lion,lions<br />
+			profiles:tagged:friend favorites:none comments:none<br />
+			profiles:tagged:friend submissions:all tags:sketch journals:none<br />
+			<br />
+		</code>
+
+		<p>Each primary command can only be used once. Every subsequent command will be ignored. (i.e. "tags:fat tags:dragon" won't work, it'll only take the first.)</p>
+		</div>
+		
+		<div class="clear"></div>
+
+		<%= s.label :rules %>
+		<%= s.text_field :rules %>
+
+		<%= s.button 'Save' %>
+	</fieldset>
+<% end %>

@@ -1,0 +1,37 @@
+<%- if @profile -%>
+<%= render :partial => 'profiles/banner' %>
+
+<h1>Submissions</h1>
+
+<%- end -%>
+
+<div id="thumbnails">
+<%- @thumbnails.each do |thumb| -%>
+<div>
+	<%= link_to image_tag(
+				thumb.url,
+				:style => thumbnail_style(thumb),
+				:id => "thumbnail-#{thumb.id}",
+				:class => thumb.is_adult? ? 'filtered' : nil
+			),
+			submission_path(thumb.id),
+			:class => "thumbnail" %>
+	<div class="data" style="<%= thumbnail_data_style(thumb) %>">
+		<ul>
+			<li><div>&#x2665;</div><%= thumb.favorites_count %></li>
+			<li><div>&#x25CA;</div><%= thumb.comments_count %></li>
+			<li><div>&#x21B9;</div><%= thumb.shares_count %></li>
+			<li><div>&#x25C9;</div><%= thumb.views_count %></li>
+		</ul>
+	</div>
+</div>
+<%- end -%>
+</div>
+
+<div class="clear"></div>
+
+<svg id="svg-effects">
+	<filter id="thumbnail-blur">
+		<feGaussianBlur stdDeviation="4" />
+	</filter>
+</svg>

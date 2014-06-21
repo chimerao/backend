@@ -1,0 +1,17 @@
+<h1 class="temp">
+	Journals
+	<%- if @profile == current_profile -%>
+	<%= link_to "+", new_profile_journal_path(@profile) %>
+	<%- end -%>
+</h1>
+
+<%- @journals.each do |journal| -%>
+	<div class="journal">
+		<h2><%= link_to journal.title, journal %></h2>
+		<div class="timestamp">
+			<%= time_ago(journal.created_at) %>,
+			<%= link_to "#{journal.comments.count} comments", journal_path(journal, anchor: "comments") %>
+		</div>
+		<div><%= imaginate_format(journal.body) %></div>
+	</div>
+<%- end -%>

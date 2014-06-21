@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+dragon_favorite_folder:
+  profile_id: 1
+  name: Favorites
+  url_name: favorites
+  is_private: false
+  is_permanent: true
+
+donkey_favorite_folder:
+  profile_id: 2
+  name: Favorites
+  url_name: favorites
+  is_private: false
+  is_permanent: true
+
+lion_favorite_folder:
+  profile_id: 3
+  name: Favorites
+  url_name: favorites
+  is_private: false
+  is_permanent: true
+
+raccoon_favorite_folder:
+  profile_id: 4
+  name: Favorites
+  url_name: favorites
+  is_private: false
+  is_permanent: true
+
+raccoon_raccoons_folder:
+  profile_id: 4
+  name: Raccoons
+  url_name: raccoons
+  is_private: false
+  is_permanent: false

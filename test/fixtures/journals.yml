@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+dragon_journal_1:
+  id: 1
+  profile_id: 1
+  profile_pic_id: 2
+  title: Dragon Thoughts
+  url_title: dragon-thoughts
+  body: Durrrrrr..
+  published_at: <%= 2.days.ago.to_s :db %>
+  created_at: <%= 2.days.ago.to_s :db %>
+  updated_at: <%= 2.days.ago.to_s :db %>
+
+donkey_journal_1:
+  id: 2
+  profile_id: 2
+  title: Donkey Thoughts
+  url_title: donkey-thoughts
+  body: Hee-HAW!
+  published_at: <%= 1.days.ago.to_s :db %>
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+
+lion_journal_1:
+  id: 3
+  profile_id: 3
+  title: Lion Thoughts
+  url_title: lion-thoughts
+  body: Roar!
+  published_at: <%= 1.days.ago.to_s :db %>
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+
+dragon_friend_journal_1:
+  id: 4
+  profile_id: 1
+  title: For Friends Only
+  url_title: for-friends-only
+  body: It's private.
+  published_at: <%= 1.days.ago.to_s :db %>
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+
+dragon_unpublished_journal_1:
+  id: 5
+  profile_id: 1
+  title: Untitled
+  url_title: untitled
+  body: It's not finished yet.
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>

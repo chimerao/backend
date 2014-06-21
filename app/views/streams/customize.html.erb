@@ -1,0 +1,11 @@
+<%= form_tag customize_profile_streams_path(@profile), method: :patch %>
+	<%- @streams.each do |stream| -%>
+	<label for="streams_<%= stream.id %>">
+		<%= check_box_tag "streams[#{stream.id}]", stream.id, @followed_stream_ids.include?(stream.id) %>
+		<%= stream.name %>
+	</label>
+	<%- end -%>
+
+	<%= submit_tag 'Save' %>
+
+</form>

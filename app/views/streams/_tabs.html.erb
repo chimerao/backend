@@ -1,0 +1,10 @@
+<div id="tabs">
+	<ul>
+		<li<%= raw(' class="active"') if !@stream -%>><%= link_to 'Dash', dash_path %></li>
+		<%- @streams.each do |stream| -%>
+		<li<%= raw(' class="active"') if stream == @stream -%>><%= link_to stream.name, profile_stream_path(current_profile, stream) %></li>
+		<%- end -%>
+		<li><%= link_to '+', new_profile_stream_path(current_profile) %></li>
+	</ul>
+	<div class="clear"></div>
+</div>

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+dragon_submission_folder:
+  profile_id: 1
+  name: Submissions
+  url_name: submissions
+  is_permanent: true
+
+donkey_submission_folder:
+  profile_id: 2
+  name: Submissions
+  url_name: submissions
+  is_permanent: true
+
+lion_submission_folder:
+  profile_id: 3
+  name: Submissions
+  url_name: submissions
+  is_permanent: true
+
+raccoon_submission_folder:
+  profile_id: 4
+  name: Submissions
+  url_name: submissions
+  is_permanent: true
+
+dragon_dragons_folder:
+  profile_id: 1
+  name: Dragons
+  url_name: dragons
+  is_permanent: false

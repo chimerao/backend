@@ -1,0 +1,42 @@
+<h1>Edit Profile Pics</h1>
+
+<% if @profile_pic.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@profile_pic.errors.count, "error") %> prohibited this profile_pic from being saved:</h2>
+
+		<ul>
+		<% @profile_pic.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<ul id="profile-pic-list">
+
+<%- @profile_pics.each do |profile_pic| -%>
+	<li id="profile-pic-<%= profile_pic.id %>"<%= ' class="default"'.html_safe if profile_pic == @profile.default_profile_pic %>>
+		<div class="pic">
+			<%= image_tag(url_for_profile_pic(@profile, profile_pic: profile_pic),
+					class: profile_pic.is_default? ? 'default' : nil,
+					alt: profile_pic.title,
+					title: profile_pic.title) %>
+		</div>
+		<%= link_to 'x', profile_pic_url(@profile, profile_pic), class: 'remove', title: 'Remove this profile pic', class: 'delete' %>
+	</li>
+<%- end -%>
+</ul>
+<div class="clear"></div>
+<p>Click a pic to make it your default</p>
+
+<br /><br />
+<%= form_for :profile_pic,
+						 url: profile_pics_url(@profile),
+						 html: { multipart: true } do |u| %>
+	<fieldset>
+		<h2><%= t('profile_pics.edit.choose_file') %></h2>
+		<%= u.file_field :image, value: nil %>
+
+		<%= u.submit t('profile_pics.edit.submit') %>
+	</fieldset>
+<%- end -%>

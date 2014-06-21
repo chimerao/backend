@@ -1,0 +1,1 @@
+json.extract! @message, :id, :subject, :body, :created_at

@@ -1,0 +1,24 @@
+<li class="comment make-comment">
+	<form action="<%= commentable_comments_path %>" enctype="multipart/form-data" id="reply-form" method="post" name="replyform"><div style="margin:0;padding:0;display:inline;"><input name="authenticity_token" type="hidden" value="<%= IG.authToken %>" /></div>
+		<fieldset>
+			<input type="hidden" id="reply_comment_id" name="comment[comment_id]" value="">
+			<div class="profile-pic">
+				<div class="profile-pic-selectable" id="reply-profile-pic-selectable">
+					<div class="profile-pic-image">
+						<%= img_tag(profile_pic) %>
+					</div>
+				</div>
+			</div>
+			<div class="name"><%= profile_name %></div>
+			<div class="bubble">
+				<div class="text"><div class="talk-notch"></div>
+					<textarea id="reply_body" name="comment[body]"></textarea>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="attach-image"><span class="glyph">+</span> Attach Image</div>
+			<input class="comment-image-input" id="reply_comment_image" name="comment[image]" type="file" />
+			<button type="submit" name="commit"><%= Locale.get('imaginate.comment_submit') %></button>
+		</fieldset>
+	</form>
+</li>

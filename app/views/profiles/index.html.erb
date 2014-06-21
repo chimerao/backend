@@ -1,0 +1,16 @@
+<%- @user.profiles.each do |profile| -%>
+	<p>
+		<%= link_to image_tag(url_for_profile_pic(profile)), profile_home(profile.url_name) %>
+		<%= link_to profile.name, profile_home(profile.url_name) %> 
+		<%- if profile != current_profile -%>
+		<%= form_tag switch_profile_path(profile), method: :post %>
+			<%= submit_tag 'switch' %>
+		</form>
+		<%- end -%>
+	</p>
+<%- end -%>
+
+<p><%= link_to 'New Profile', new_profile_path %></p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %>

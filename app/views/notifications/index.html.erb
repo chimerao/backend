@@ -1,0 +1,30 @@
+<h1>Notifications</h1>
+
+<table>
+<tr>
+	<th>ID</th>
+	<th>Type</th>
+	<th>Type ID</th>
+	<th>Rules</th>
+	<th>Action</th>
+</tr>
+<%- @notifications.each do |notification| -%>
+	<tr>
+		<td><%= notification.id %></td>
+		<td><%= notification.notifyable_type %></td>
+		<td><%= notification.notifyable_id %></td>
+		<td><%= notification.rules %></td>
+		<td>
+		<%- if notification.notifyable_type == 'Collaboration' -%>
+			<%= link_to 'take action', review_approve_submission_path(notification.notifyable.submission) %>
+		<%- elsif notification.notifyable_type == 'Submission' -%>
+			<%= link_to 'take action', review_relinquish_submission_path(notification.notifyable) %>
+		<%- elsif notification.notifyable_type == 'FilterProfile' -%>
+			<%= link_to 'take action', review_join_profile_filter_member_path(current_profile, notification.notifyable.filter, notification.notifyable.profile) %>
+		<%- else -%>
+			No action set
+		<%- end -%>
+		</td>
+	</tr>
+<%- end -%>
+</table>

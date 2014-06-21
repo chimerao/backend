@@ -1,0 +1,115 @@
+<%- if @submission.is_a?(SubmissionGroup) -%>
+<div class="submission-group">
+	<div>
+	<%- @submission.submissions.each do |submission| -%>
+		<div class="image"><%= image_tag submission.file(:resized) %></div>
+	<%- end -%>
+	</div>
+</div>
+<%- else -%>
+<div class="image"><%= image_tag @submission.file(:resized) %></div>
+<%- end -%>
+
+<div class="submission flow">
+	<div class="head">
+		<h1 class="submission title"><%= @submission.title %></h1>
+		<div class="folder">
+		<%- if @folder -%>
+			<%= "in #{@submission.submission_folders.first.name}" if not @submission.	submission_folders.blank? %>
+		<%- end -%>
+		</div>
+	
+		<div class="social">
+	<%- if current_profile -%>
+			<div class="fave">
+			<%- if current_profile.has_faved?(@submission) -%>
+				<%= form_tag unfave_submission_path(@submission), method: :delete %>
+					<%= submit_tag '-fave' %>
+				</form>
+			<%- else -%>
+				<%= form_tag fave_submission_path(@submission), method: :post %>
+					<%= submit_tag '+fave' %>
+				</form>
+			<%- end -%>
+			<%- if current_profile.has_shared?(@submission) -%>
+				<%= form_tag unshare_submission_path(@submission), method: :delete %>
+					<%= submit_tag '-share' %>
+				</form>
+			<%- else -%>
+				<%= form_tag share_submission_path(@submission), method: :post %>
+					<%= submit_tag '+share' %>
+				</form>
+			<%- end -%>
+			</div>
+		<%- if not @submission.claimed? and @submission.profile != current_profile and @submission.owner != current_profile %>
+			<%= form_tag request_claim_submission_path(@submission), method: :get %>
+				<%= submit_tag 'I made this' %>
+			</form>
+		<%- end -%>
+	<%- end -%>
+		</div>
+
+		<ul class="metadata">
+			<li><span>&#x2665;</span><%= @submission.favorites_count %></li>
+			<li><span>&#x25CA;</span><%= @submission.comments_count %></li>
+			<li><span>&#x21B9;</span><%= @submission.shares_count %></li>
+			<li><span>&#x25C9;</span><%= @submission.views_count %></li>
+			<li class="report"></li>
+		</ul>
+	</div>
+	<div class="collaborators">
+	<%- @collaborators.each do |profile| -%>
+		<div class="collaborator">
+			<%= link_to image_tag(url_for_profile_pic(profile, :size => :pixels_80)), profile_home_path(profile.url_name) %>
+			<div class="name"><%= link_to profile.name, profile_home_path(profile.url_name) %></div>
+		</div>
+	<%- end -%>
+	</div>
+
+	<div class="description"><%= imaginate_format(@submission.description) %></div>
+	<div class="tags"><%= display_tags(@submission.tag_list) %></div>
+
+<%- if @submission.in_series? or (@collaborators.include?(current_profile) and not @submission.next_submission) -%>
+	<div class="series">
+		<h4>Series</h4>
+		<div class="previous">
+	<%- if @submission.previous_submission -%>
+			<a href="<%= submission_path(@submission.previous_submission) %>">
+				<div class="glyph">&#x2190;</div>
+				<%= image_tag @submission.previous_submission.file(:thumb_120) %>
+			</a>
+	<%- end -%>
+		</div>
+		<div class="next">
+	<%- if @submission.next_submission -%>
+			<a href="<%= submission_path(@submission.next_submission) %>">
+				<div class="glyph">&#x2192;</div>
+				<%= image_tag @submission.next_submission.file(:thumb_120) %>
+			</a>
+	<%- end -%>
+		</div>
+	<%- if @collaborators.include?(current_profile) and not @submission.next_submission -%>
+		<p><%= link_to 'Add a new submission in a series', new_series_profile_submission_path(current_profile, @submission) %></p>
+	<%- end -%>
+	</div>
+<%- end -%>
+	<div class="clear"></div>
+	<div class="replies">
+		<%- if @replyable -%>
+		<div>This is a reply to <%= @replyable.class.to_s %>: <%= link_to @replyable.title, @replyable %></div>
+		<%- end -%>
+		<h4>Replies</h4>
+		<ul>
+		<%- @submission.replies.each do |reply| -%>
+			<li><%= link_to reply.title, reply %></li>
+		<%- end -%>
+		</ul>
+		<%= form_tag reply_submission_path(@submission, replyable_type: 'submission'), method: :post %>
+			<%= submit_tag 'Reply with Submission' %>
+		</form>
+		<%= form_tag reply_submission_path(@submission, replyable_type: 'journal'), method: :post %>
+			<%= submit_tag 'Reply with Journal' %>
+		</form>
+	</div>
+	<%= render :partial => 'comments/comments', locals: { commentable: @submission, post_path: submission_comments_path(@submission) } %>
+</div>

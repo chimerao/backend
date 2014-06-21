@@ -1,0 +1,67 @@
+<div id="profile-container"></div>
+<!-- div id="submissions">
+	<h2>
+		<%= link_to 'Submissions', profile_submissions_path(@profile) %>
+		<%- if @profile == current_profile -%>
+		<%= link_to("+", unpublished_profile_submissions_path(current_profile)) %>
+		<%- end -%>
+	</h2>
+
+	<%- if !@submissions.blank? -%>
+
+	<div id="thumbnails">
+		<%- @thumbnails.each do |thumb| -%>
+		<div>
+		<%= link_to image_tag(
+						thumb.url,
+						:style => thumbnail_style(thumb),
+						:id => "thumbnail-#{thumb.id}",
+						:class => thumb.is_adult? ? 'filtered' : nil
+					),
+					submission_path(thumb.id),
+					:class => "thumbnail" %>
+			<div class="data" style="<%= thumbnail_data_style(thumb) %>">
+				<ul>
+					<li><div>&#x2665;</div><%= thumb.favorites_count %></li>
+					<li><div>&#x25CA;</div><%= thumb.comments_count %></li>
+					<li><div>&#x21B9;</div><%= thumb.shares_count %></li>
+					<li><div>&#x25C9;</div><%= thumb.views_count %></li>
+				</ul>
+			</div>
+		</div>
+		<%- end -%>
+	</div>
+
+	<div class="clear"></div>
+	<%- end -%>
+
+</div>
+
+<div id="journals">
+	<h2>
+		<%= link_to 'Journals', profile_journals_path(@profile) %>
+		<%- if @profile == current_profile -%>
+		<%= link_to "+", new_profile_journal_path(@profile) %>
+		<%- end -%>
+	</h2>
+
+	<%- if @journal -%>
+	<h4><%= link_to @journal.title, journal_path(@journal) %></h4>
+	<div>
+		<%= time_ago(@journal.created_at) %>
+	</div>
+	<div>
+		<%= imaginate_format(truncate(@journal.body, :length => 400)) %>
+	</div>
+
+	<h3><%= link_to 'More', profile_journals_path(@profile) %></h3>
+	<%- end -%>
+</div -->
+
+<br clear="all" />
+
+<svg id="svg-effects">
+	<filter id="thumbnail-blur">
+		<feGaussianBlur stdDeviation="4" />
+	</filter>
+</svg>

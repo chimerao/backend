@@ -1,0 +1,182 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+
+dragon_submissions_stream:
+  id: 1
+  profile_id: 1
+  name: Submissions
+  is_public: true
+  is_permanent: true
+  rules: submissions:profile
+
+dragon_journals_stream:
+  id: 2
+  profile_id: 1
+  name: Journals
+  is_public: true
+  is_permanent: true
+  rules: journals:profile
+
+dragon_favorites_stream:
+  id: 3
+  profile_id: 1
+  name: Favorites
+  is_public: true
+  is_permanent: true
+  rules: favorites:profile
+
+dragon_private_fatty_stream:
+  id: 4
+  profile_id: 1
+  name: Fatties
+  is_public: false
+  is_permanent: false
+  rules: submissions:all tags:fat
+
+dragon_public_dragon_stream:
+  id: 5
+  profile_id: 1
+  name: Dragons
+  is_public: true
+  is_permanent: false
+  rules: submissions:all tags:dragon
+
+donkey_submissions_stream:
+  id: 6
+  profile_id: 2
+  name: Submissions
+  is_public: true
+  is_permanent: true
+  rules: submissions:profile
+
+donkey_journals_stream:
+  id: 7
+  profile_id: 2
+  name: Journals
+  is_public: true
+  is_permanent: true
+  rules: journals:profile
+
+donkey_favorites_stream:
+  id: 8
+  profile_id: 2
+  name: Favorites
+  is_public: true
+  is_permanent: true
+  rules: favorites:profile
+
+lion_submissions_stream:
+  id: 9
+  profile_id: 3
+  name: Submissions
+  is_public: true
+  is_permanent: true
+  rules: submissions:profile
+
+lion_journals_stream:
+  id: 10
+  profile_id: 3
+  name: Journals
+  is_public: true
+  is_permanent: true
+  rules: journals:profile
+
+lion_favorites_stream:
+  id: 11
+  profile_id: 3
+  name: Favorites
+  is_public: true
+  is_permanent: true
+  rules: favorites:profile
+
+dragon_comments_stream:
+  id: 12
+  profile_id: 1
+  name: Comments
+  is_public: true
+  is_permanent: true
+  rules: comments:profile
+
+donkey_comments_stream:
+  id: 13
+  profile_id: 2
+  name: Comments
+  is_public: true
+  is_permanent: true
+  rules: comments:profile
+
+lion_comments_stream:
+  id: 14
+  profile_id: 3
+  name: Comments
+  is_public: true
+  is_permanent: true
+  rules: comments:profile
+
+dragon_shares_stream:
+  id: 15
+  profile_id: 1
+  name: Shares
+  is_public: true
+  is_permanent: true
+  rules: shares:profile
+
+donkey_shares_stream:
+  id: 16
+  profile_id: 2
+  name: Shares
+  is_public: true
+  is_permanent: true
+  rules: shares:profile
+
+lion_shares_stream:
+  id: 17
+  profile_id: 3
+  name: Shares
+  is_public: true
+  is_permanent: true
+  rules: shares:profile
+
+raccoon_submissions_stream:
+  id: 18
+  profile_id: 4
+  name: Submissions
+  is_public: true
+  is_permanent: true
+  rules: submissions:profile
+
+raccoon_journals_stream:
+  id: 19
+  profile_id: 4
+  name: Journals
+  is_public: true
+  is_permanent: true
+  rules: journals:profile
+
+raccoon_favorites_stream:
+  id: 20
+  profile_id: 4
+  name: Favorites
+  is_public: true
+  is_permanent: true
+  rules: favorites:profile
+
+raccoon_comments_stream:
+  id: 21
+  profile_id: 4
+  name: Comments
+  is_public: true
+  is_permanent: true
+  rules: comments:profile
+
+raccoon_shares_stream:
+  id: 22
+  profile_id: 4
+  name: Shares
+  is_public: true
+  is_permanent: true
+  rules: shares:profile

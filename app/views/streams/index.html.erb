@@ -1,0 +1,29 @@
+<%= render :partial => 'streams/tabs' %>
+
+<div id="wrapper">
+	<div id="info">
+		<h4>Displaying</h4>
+		<p>All followed streams</p>
+		<br />
+
+	<%- if current_profile.submissions.unpublished.count > 0 -%>
+		<h4><%= link_to 'Unpublished Submissions', unpublished_profile_submissions_path(current_profile) %></h4>
+		<ul>
+		<%- current_profile.submissions.unpublished.each do |submission| -%>
+			<li><%= link_to image_tag(submission.image(:thumb_64)), edit_profile_submission_path(current_profile, submission) %></li>
+		<%- end -%>
+		</ul>
+	<%- end -%>
+		<br />
+	<%- if current_profile.journals.unpublished.count > 0 -%>
+		<h4>Unpublished Journals</h4>
+		<ul>
+		<%- current_profile.journals.unpublished.each do |journal| -%>
+			<li><%= link_to journal.title.blank? ? 'untitled' : journal.title, edit_profile_journal_path(current_profile, journal) %></li>
+		<%- end -%>
+		</ul>
+	<%- end -%>
+	</div>
+	<%= render :partial => 'streams/stream' %>
+</div>
+<div class="clear"></div>

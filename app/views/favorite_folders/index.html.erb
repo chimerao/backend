@@ -1,0 +1,15 @@
+<h1>Favorite Folders</h1>
+
+<ul>
+<%- @folders.each do |folder| -%>
+	<li>
+		<%= folder.name %>
+		<%= link_to 'edit', edit_profile_favorite_folder_path(current_profile, folder) %>
+		<%= form_tag profile_favorite_folder_path(current_profile, folder), method: :delete %>
+			<%= submit_tag 'Delete' %>
+		</form>
+	</li>
+<%- end -%>
+
+	<li><%= link_to '+ New Folder', new_profile_favorite_folder_path(current_profile) %></li>
+</ul>

@@ -1,0 +1,43 @@
+<div id="stream">
+<%- @tidbits.each do |tidbit| -%>
+	<div class="stream-item">
+		<%= link_to image_tag(url_for_profile_pic(tidbit.profile, size: :pixels_128), class: 'profile-pic'), profile_path(tidbit.profile), class: 'profile-link' %>
+		<div class="profile-head">
+			<%= tidbit.profile.name %> - <%= time_ago(tidbit.created_at) %>
+		</div>
+		<%- if tidbit.item_type == 'Favorite' -%>
+		<div>faved</div>
+		<%- if tidbit.item.favable_type == 'Submission' -%>
+		<%= link_to(image_tag(tidbit.item.favable.image(:thumb_180)), submission_path(tidbit.item.favable)) %>
+		<%- elsif tidbit.item.favable_type == 'Journal' -%>
+		<%= tidbit.item.favable.profile.name %>'s journal, 
+		<%= link_to tidbit.item.favable.title, tidbit.item.favable %>
+		<%- end -%>
+		<%- end -%>
+		<%- if tidbit.item_type == 'Share' -%>
+		<div>shared</div>
+		<%- if tidbit.item.shareable_type == 'Submission' -%>
+		<%= link_to(image_tag(tidbit.item.shareable.image(:thumb_180)), submission_path(tidbit.item.shareable)) %>
+		<%- elsif tidbit.item.shareable_type == 'Journal' -%>
+		<%= tidbit.item.shareable.profile.name %>'s journal, 
+		<%= link_to tidbit.item.shareable.title, tidbit.item.shareable %>
+		<%- end -%>
+		<%- end -%>
+		<%- if tidbit.item_type == 'Watch' -%>
+		<p>started following <%= tidbit.item.watched_profile == current_profile ? 'you' : link_to(tidbit.item.watched_profile.name, tidbit.item.watched_profile) %></p>
+		<%- end -%>
+		<%- if ['SubmissionImage', 'SubmissionGroup'].include?(tidbit.item_type) -%>
+			<%= link_to(image_tag(tidbit.item.image(:thumb_512)), submission_path(tidbit.item)) %>
+		<%- elsif tidbit.item_type == 'Journal' -%>
+			<h3><%= link_to tidbit.item.title, journal_path(tidbit.item) %></h3>
+			<p><%= imaginate_format(truncate(tidbit.item.body, :length => 400)) %></p>
+		<%- elsif tidbit.item_type == 'Comment' -%>
+			<div>
+				commented on 
+				<%= link_to tidbit.item.commentable.title, tidbit.item.commentable %>
+			</div>
+		<%- end -%>
+	</div>
+	<div class="clear"></div>
+<%- end -%>
+</div>

@@ -1,0 +1,39 @@
+dragon_profile_pic_1:
+  id: 1
+  profile_id: 1
+  title: Dragon
+  is_default: true
+  image_file_name: profilepic.jpg
+  image_content_type: image/jpeg
+  image_file_size: 250000
+  image_updated_at: <%= 1.days.ago.to_s :db %>
+
+dragon_profile_pic_2:
+  id: 2
+  profile_id: 1
+  title: Dragon2
+  is_default: false
+  image_file_name: profilepic.jpg
+  image_content_type: image/jpeg
+  image_file_size: 250000
+  image_updated_at: <%= 1.days.ago.to_s :db %>
+
+lion_profile_pic_1:
+  id: 3
+  profile_id: 3
+  title: Lion
+  is_default: true
+  image_file_name: profilepic.jpg
+  image_content_type: image/jpeg
+  image_file_size: 250000
+  image_updated_at: <%= 1.days.ago.to_s :db %>
+
+lion_profile_pic_2:
+  id: 4
+  profile_id: 3
+  title: Lion2
+  is_default: false
+  image_file_name: profilepic.jpg
+  image_content_type: image/jpeg
+  image_file_size: 250000
+  image_updated_at: <%= 1.days.ago.to_s :db %>
