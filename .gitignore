@@ -18,3 +18,9 @@
 # Ignore paperclip attachments
 /public/system
 
+# Ignore symbolic links to front-end app
+/app/views/layouts/application.html.raw
+/public/css
+/public/images
+/public/js
+
