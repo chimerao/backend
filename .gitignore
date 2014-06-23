@@ -20,6 +20,7 @@
 
 # Config files, which are unique to the specific system the app is on.
 /config/database.yml
+/config/secrets.yml
 
 # Ignore symbolic links to front-end app
 /app/views/layouts/application.html.raw
