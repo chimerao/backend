@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140516204309) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "collaborations", force: true do |t|
     t.integer  "profile_id",                      null: false
     t.integer  "submission_id",                   null: false
@@ -22,8 +25,8 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "acted_on"
   end
 
-  add_index "collaborations", ["profile_id"], name: "index_collaborations_on_profile_id"
-  add_index "collaborations", ["submission_id"], name: "index_collaborations_on_submission_id"
+  add_index "collaborations", ["profile_id"], name: "index_collaborations_on_profile_id", using: :btree
+  add_index "collaborations", ["submission_id"], name: "index_collaborations_on_submission_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "profile_id",                    null: false
@@ -40,10 +43,10 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "image_updated_at"
   end
 
-  add_index "comments", ["comment_id"], name: "index_comments_on_comment_id"
-  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id"
-  add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type"
-  add_index "comments", ["profile_id"], name: "index_comments_on_profile_id"
+  add_index "comments", ["comment_id"], name: "index_comments_on_comment_id", using: :btree
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
+  add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
+  add_index "comments", ["profile_id"], name: "index_comments_on_profile_id", using: :btree
 
   create_table "favorite_folders", force: true do |t|
     t.integer  "profile_id",                              null: false
@@ -55,7 +58,7 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "updated_at"
   end
 
-  add_index "favorite_folders", ["profile_id"], name: "index_favorite_folders_on_profile_id"
+  add_index "favorite_folders", ["profile_id"], name: "index_favorite_folders_on_profile_id", using: :btree
 
   create_table "favorites", force: true do |t|
     t.integer  "profile_id",                    null: false
@@ -65,10 +68,10 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "created_at"
   end
 
-  add_index "favorites", ["favable_id"], name: "index_favorites_on_favable_id"
-  add_index "favorites", ["favable_type"], name: "index_favorites_on_favable_type"
-  add_index "favorites", ["favorite_folder_id"], name: "index_favorites_on_favorite_folder_id"
-  add_index "favorites", ["profile_id"], name: "index_favorites_on_profile_id"
+  add_index "favorites", ["favable_id"], name: "index_favorites_on_favable_id", using: :btree
+  add_index "favorites", ["favable_type"], name: "index_favorites_on_favable_type", using: :btree
+  add_index "favorites", ["favorite_folder_id"], name: "index_favorites_on_favorite_folder_id", using: :btree
+  add_index "favorites", ["profile_id"], name: "index_favorites_on_profile_id", using: :btree
 
   create_table "filter_profiles", force: true do |t|
     t.integer  "profile_id",                  null: false
@@ -78,8 +81,8 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "updated_at"
   end
 
-  add_index "filter_profiles", ["filter_id"], name: "index_filter_profiles_on_filter_id"
-  add_index "filter_profiles", ["profile_id"], name: "index_filter_profiles_on_profile_id"
+  add_index "filter_profiles", ["filter_id"], name: "index_filter_profiles_on_filter_id", using: :btree
+  add_index "filter_profiles", ["profile_id"], name: "index_filter_profiles_on_profile_id", using: :btree
 
   create_table "filters", force: true do |t|
     t.integer  "profile_id",                             null: false
@@ -90,32 +93,32 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "created_at"
   end
 
-  add_index "filters", ["profile_id"], name: "index_filters_on_profile_id"
-  add_index "filters", ["url_name"], name: "index_filters_on_url_name"
+  add_index "filters", ["profile_id"], name: "index_filters_on_profile_id", using: :btree
+  add_index "filters", ["url_name"], name: "index_filters_on_url_name", using: :btree
 
   create_table "filters_journals", force: true do |t|
     t.integer "filter_id"
     t.integer "journal_id"
   end
 
-  add_index "filters_journals", ["filter_id", "journal_id"], name: "index_filters_journals_on_filter_id_and_journal_id"
-  add_index "filters_journals", ["journal_id", "filter_id"], name: "index_filters_journals_on_journal_id_and_filter_id"
+  add_index "filters_journals", ["filter_id", "journal_id"], name: "index_filters_journals_on_filter_id_and_journal_id", using: :btree
+  add_index "filters_journals", ["journal_id", "filter_id"], name: "index_filters_journals_on_journal_id_and_filter_id", using: :btree
 
   create_table "filters_submission_folders", force: true do |t|
     t.integer "filter_id"
     t.integer "submission_folder_id"
   end
 
-  add_index "filters_submission_folders", ["filter_id", "submission_folder_id"], name: "index_fsf_on_filter_id_and_submission_folder_id"
-  add_index "filters_submission_folders", ["submission_folder_id", "filter_id"], name: "index_fsf_on_submission_folder_id_and_filter_id"
+  add_index "filters_submission_folders", ["filter_id", "submission_folder_id"], name: "index_fsf_on_filter_id_and_submission_folder_id", using: :btree
+  add_index "filters_submission_folders", ["submission_folder_id", "filter_id"], name: "index_fsf_on_submission_folder_id_and_filter_id", using: :btree
 
   create_table "filters_submissions", force: true do |t|
     t.integer "filter_id"
     t.integer "submission_id"
   end
 
-  add_index "filters_submissions", ["filter_id", "submission_id"], name: "index_filters_submissions_on_filter_id_and_submission_id"
-  add_index "filters_submissions", ["submission_id", "filter_id"], name: "index_filters_submissions_on_submission_id_and_filter_id"
+  add_index "filters_submissions", ["filter_id", "submission_id"], name: "index_filters_submissions_on_filter_id_and_submission_id", using: :btree
+  add_index "filters_submissions", ["submission_id", "filter_id"], name: "index_filters_submissions_on_submission_id_and_filter_id", using: :btree
 
   create_table "journal_images", force: true do |t|
     t.integer  "profile_id",         null: false
@@ -127,7 +130,7 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "image_updated_at"
   end
 
-  add_index "journal_images", ["journal_id"], name: "index_journal_images_on_journal_id"
+  add_index "journal_images", ["journal_id"], name: "index_journal_images_on_journal_id", using: :btree
 
   create_table "journals", force: true do |t|
     t.integer  "profile_id",                            null: false
@@ -144,9 +147,9 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "updated_at"
   end
 
-  add_index "journals", ["journal_id"], name: "index_journals_on_journal_id"
-  add_index "journals", ["profile_id"], name: "index_journals_on_profile_id"
-  add_index "journals", ["url_title"], name: "index_journals_on_url_title"
+  add_index "journals", ["journal_id"], name: "index_journals_on_journal_id", using: :btree
+  add_index "journals", ["profile_id"], name: "index_journals_on_profile_id", using: :btree
+  add_index "journals", ["url_title"], name: "index_journals_on_url_title", using: :btree
 
   create_table "messages", force: true do |t|
     t.integer  "sender_id",                                  null: false
@@ -162,8 +165,8 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "updated_at"
   end
 
-  add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id"
-  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id"
+  add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "notifications", force: true do |t|
     t.integer  "profile_id",      null: false
@@ -173,9 +176,9 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "created_at"
   end
 
-  add_index "notifications", ["notifyable_id"], name: "index_notifications_on_notifyable_id"
-  add_index "notifications", ["notifyable_type"], name: "index_notifications_on_notifyable_type"
-  add_index "notifications", ["profile_id"], name: "index_notifications_on_profile_id"
+  add_index "notifications", ["notifyable_id"], name: "index_notifications_on_notifyable_id", using: :btree
+  add_index "notifications", ["notifyable_type"], name: "index_notifications_on_notifyable_type", using: :btree
+  add_index "notifications", ["profile_id"], name: "index_notifications_on_profile_id", using: :btree
 
   create_table "profile_pics", force: true do |t|
     t.integer  "profile_id",                         null: false
@@ -187,7 +190,7 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "image_updated_at"
   end
 
-  add_index "profile_pics", ["profile_id"], name: "index_profile_pics_on_profile_id"
+  add_index "profile_pics", ["profile_id"], name: "index_profile_pics_on_profile_id", using: :btree
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id",                                               null: false
@@ -210,9 +213,9 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "banner_image_updated_at"
   end
 
-  add_index "profiles", ["name"], name: "index_profiles_on_name"
-  add_index "profiles", ["site_identifier"], name: "index_profiles_on_site_identifier", unique: true
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+  add_index "profiles", ["name"], name: "index_profiles_on_name", using: :btree
+  add_index "profiles", ["site_identifier"], name: "index_profiles_on_site_identifier", unique: true, using: :btree
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "shares", force: true do |t|
     t.integer  "profile_id",                null: false
@@ -221,9 +224,9 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "created_at"
   end
 
-  add_index "shares", ["profile_id"], name: "index_shares_on_profile_id"
-  add_index "shares", ["shareable_id"], name: "index_shares_on_shareable_id"
-  add_index "shares", ["shareable_type"], name: "index_shares_on_shareable_type"
+  add_index "shares", ["profile_id"], name: "index_shares_on_profile_id", using: :btree
+  add_index "shares", ["shareable_id"], name: "index_shares_on_shareable_id", using: :btree
+  add_index "shares", ["shareable_type"], name: "index_shares_on_shareable_type", using: :btree
 
   create_table "streams", force: true do |t|
     t.integer  "profile_id",                   null: false
@@ -235,7 +238,7 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "updated_at"
   end
 
-  add_index "streams", ["profile_id"], name: "index_streams_on_profile_id"
+  add_index "streams", ["profile_id"], name: "index_streams_on_profile_id", using: :btree
 
   create_table "submission_folders", force: true do |t|
     t.integer  "profile_id",                              null: false
@@ -246,15 +249,15 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "updated_at"
   end
 
-  add_index "submission_folders", ["profile_id"], name: "index_submission_folders_on_profile_id"
+  add_index "submission_folders", ["profile_id"], name: "index_submission_folders_on_profile_id", using: :btree
 
   create_table "submission_folders_submissions", force: true do |t|
     t.integer "submission_folder_id"
     t.integer "submission_id"
   end
 
-  add_index "submission_folders_submissions", ["submission_folder_id", "submission_id"], name: "index_sfs_on_submission_folder_id_and_submission_id"
-  add_index "submission_folders_submissions", ["submission_id", "submission_folder_id"], name: "index_sfs_on_submission_id_and_submission_folder_id"
+  add_index "submission_folders_submissions", ["submission_folder_id", "submission_id"], name: "index_sfs_on_submission_folder_id_and_submission_id", using: :btree
+  add_index "submission_folders_submissions", ["submission_id", "submission_folder_id"], name: "index_sfs_on_submission_id_and_submission_folder_id", using: :btree
 
   create_table "submissions", force: true do |t|
     t.integer  "profile_id",                      null: false
@@ -280,12 +283,12 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "file_updated_at"
   end
 
-  add_index "submissions", ["profile_id"], name: "index_submissions_on_profile_id"
-  add_index "submissions", ["rating"], name: "index_submissions_on_rating"
-  add_index "submissions", ["submission_group_id"], name: "index_submissions_on_submission_group_id"
-  add_index "submissions", ["submission_id"], name: "index_submissions_on_submission_id"
-  add_index "submissions", ["type"], name: "index_submissions_on_type"
-  add_index "submissions", ["url_title"], name: "index_submissions_on_url_title"
+  add_index "submissions", ["profile_id"], name: "index_submissions_on_profile_id", using: :btree
+  add_index "submissions", ["rating"], name: "index_submissions_on_rating", using: :btree
+  add_index "submissions", ["submission_group_id"], name: "index_submissions_on_submission_group_id", using: :btree
+  add_index "submissions", ["submission_id"], name: "index_submissions_on_submission_id", using: :btree
+  add_index "submissions", ["type"], name: "index_submissions_on_type", using: :btree
+  add_index "submissions", ["url_title"], name: "index_submissions_on_url_title", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -297,14 +300,14 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
 
   create_table "tags", force: true do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "tidbits", force: true do |t|
     t.integer  "profile_id",                 null: false
@@ -313,9 +316,9 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "created_at"
   end
 
-  add_index "tidbits", ["profile_id"], name: "index_tidbits_on_profile_id"
-  add_index "tidbits", ["targetable_id"], name: "index_tidbits_on_targetable_id"
-  add_index "tidbits", ["targetable_type"], name: "index_tidbits_on_targetable_type"
+  add_index "tidbits", ["profile_id"], name: "index_tidbits_on_profile_id", using: :btree
+  add_index "tidbits", ["targetable_id"], name: "index_tidbits_on_targetable_id", using: :btree
+  add_index "tidbits", ["targetable_type"], name: "index_tidbits_on_targetable_type", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",                     limit: 40,             null: false
@@ -330,9 +333,9 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "votes", force: true do |t|
     t.integer  "profile_id",              null: false
@@ -341,8 +344,8 @@ ActiveRecord::Schema.define(version: 20140516204309) do
     t.datetime "created_at"
   end
 
-  add_index "votes", ["profile_id"], name: "index_votes_on_profile_id"
-  add_index "votes", ["votable_id"], name: "index_votes_on_votable_id"
-  add_index "votes", ["votable_type"], name: "index_votes_on_votable_type"
+  add_index "votes", ["profile_id"], name: "index_votes_on_profile_id", using: :btree
+  add_index "votes", ["votable_id"], name: "index_votes_on_votable_id", using: :btree
+  add_index "votes", ["votable_type"], name: "index_votes_on_votable_type", using: :btree
 
 end
