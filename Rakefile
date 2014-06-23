@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Imaginate::Application.load_tasks
+Chimerao::Application.load_tasks

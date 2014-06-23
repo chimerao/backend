@@ -33,7 +33,7 @@ class ProfileSubmissionsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @thumbnails = Imaginate::Thumbnail.build_from_images(@submissions, thumbnail_size)
+        @thumbnails = Chimerao::Thumbnail.build_from_images(@submissions, thumbnail_size)
       end
       format.json { render '/submissions/index' }
     end
