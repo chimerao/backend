@@ -1,3 +1,7 @@
+# This is a standard template file for a quick setup of the app.
+# Adjust the settings to whatever local database you want to use.
+# Production uses postgresql, so it is best to develop against that.
+
 # SQLite version 3.x
 #   gem install sqlite3
 #
