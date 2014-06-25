@@ -14,15 +14,21 @@ class UserSessionsController < ApplicationController
 
   # POST /login
   def create
+    @user = login(params[:identifier], params[:password])
+
+    if @user.nil?
+      profile = Profile.where(['lower(site_identifier) = lower(?)', params[:identifier]]).first
+      @user = login(profile.user.email, params[:password]) if profile
+    end
+
     respond_to do |format|
-      if @user = login(params[:identifier], params[:password])
+      if @user
         format.html { redirect_to dash_path }
         format.json do
           render json: { token: generate_session_key_from_request }
         end
       else
         format.html do
-#          flash[:error] = I18n.t('flash.sessions.create.failure')
           render action: 'new'
         end
         format.json { render json: { message: 'Invalid login.' }, status: :unprocessable_entity }

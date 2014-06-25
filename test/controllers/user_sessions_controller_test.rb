@@ -12,18 +12,29 @@ class UserSessionsControllerTest < ActionController::TestCase
 
   test "create" do
     @user = users(:dragon)
-    assert_equal nil, assigns(:current_user)
+    assert_not assigns(:current_user)
     post :create, identifier: @user.email, password: 'password'
     assert_response :success
     assert_equal @user, assigns(:current_user)
   end
 
-  test "create should accept username in place of email" do
+  test "create should accept a profile name in place of email" do
     @user = users(:dragon)
-    assert_equal nil, assigns(:current_user)
-    post :create, identifier: @user.username, password: 'password'
+    @profile = profiles(:dragon_profile_2)
+    assert_not assigns(:current_user)
+    post :create, identifier: @profile.site_identifier, password: 'password'
     assert_response :success
     assert_equal @user, assigns(:current_user)
+  end
+
+  test "create should reject a profile name that is not a users" do
+    @user = users(:dragon)
+    @profile = profiles(:raccoon_profile_1)
+    @profile.user.update_attributes(password: 'shineyboo', password_confirmation: 'shineyboo')
+    assert_not assigns(:current_user)
+    post :create, identifier: @profile.site_identifier, password: 'password'
+    assert_response :unprocessable_entity
+    assert_not assigns(:current_user)
   end
 
   test "create without proper password should fail" do
@@ -38,6 +49,6 @@ class UserSessionsControllerTest < ActionController::TestCase
     assert_equal @user, assigns(:current_user)
     delete :destroy
     assert_response :no_content
-    assert_equal nil, assigns(:current_user)
+    assert_not assigns(:current_user)
   end
 end
