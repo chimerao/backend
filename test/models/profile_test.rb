@@ -18,7 +18,7 @@ class ProfileTest < ActiveSupport::TestCase
   end
 
   test "default submission folder must be created after profile create" do
-    user = User.create(username: 'bunny', email: 'bunny@bunnies.com', password: 'bunnyfoo', password_confirmation: 'bunnyfoo')
+    user = User.create(email: 'bunny@bunnies.com', password: 'bunnyfoo', password_confirmation: 'bunnyfoo')
     @profile = Profile.create(user: user, name: 'Bunny', site_identifier: 'Bunny')
     assert @profile.submission_folder,
       "submission folder was not created"
@@ -30,7 +30,7 @@ class ProfileTest < ActiveSupport::TestCase
   end
 
   test "default favorite folder must be created after profile create" do
-    user = User.create(username: 'bunny', email: 'bunny@bunnies.com', password: 'bunnyfoo', password_confirmation: 'bunnyfoo')
+    user = User.create(email: 'bunny@bunnies.com', password: 'bunnyfoo', password_confirmation: 'bunnyfoo')
     @profile = Profile.create(user: user, name: 'Bunny', site_identifier: 'Bunny')
     assert @profile.favorite_folder,
       "favorite folder was not created"
@@ -69,7 +69,7 @@ class ProfileTest < ActiveSupport::TestCase
     assert_difference 'Tidbit.count', -1 do
       @raccoon.unfollow_profile(@dragon)
     end
-    assert_nil @dragon.tidbits.last
+    assert_not_equal 'Profile', @dragon.tidbits.last.targetable_type
   end
 
   test "unfollow profile if they have no associated tidbit should not break" do
