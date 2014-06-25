@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_filter :require_login, only: [:new, :create]
   skip_before_filter :require_profile, only: [:index]
 
-  PERMIT_FIELDS = [:username, :email, :password, :password_confirmation];
+  PERMIT_FIELDS = [:username, :email, :password, :password_confirmation]
 
   wrap_parameters :user, include: PERMIT_FIELDS
 
@@ -33,10 +33,9 @@ class UsersController < ApplicationController
       if @user.save
         format.html do
           login(params[:user][:email], params[:user][:password])
-#          flash[:success] = "Successfully created!"
           redirect_to profiles_path
         end
-        format.json { render action: 'show', status: :created, location: @user }
+        format.json { render action: 'show', status: :created, location: users_url }
       else
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }

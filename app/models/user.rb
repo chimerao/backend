@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true
   validates :password_confirmation, presence: true, if: '!password.nil?'
 
-  validates :username, presence: true, uniqueness: true
   validates :email,    presence: true, uniqueness: true
 
   # Just making it easy to read and set default profiles,

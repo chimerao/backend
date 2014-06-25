@@ -3,7 +3,6 @@
 
 dragon:
   id: 1
-  username: dragon
   email: dragon@critters.org
   crypted_password: $2a$10$/nzNMtbPsNZl8JBAO/TQw.IGvXHIIP2Pw7EHaaNC5NpNSbVGBsOqK
   salt: zLGbZjLYt2zkJveoX3st
@@ -11,7 +10,6 @@ dragon:
 
 lion:
   id: 2
-  username: lion
   email: lion@critters.org
   crypted_password: $2a$10$/nzNMtbPsNZl8JBAO/TQw.IGvXHIIP2Pw7EHaaNC5NpNSbVGBsOqK
   salt: zLGbZjLYt2zkJveoX3st
@@ -19,14 +17,12 @@ lion:
 
 profileless:
   id: 3
-  username: profileless
   email: profileless@test.com
   crypted_password: $2a$10$/nzNMtbPsNZl8JBAO/TQw.IGvXHIIP2Pw7EHaaNC5NpNSbVGBsOqK
   salt: zLGbZjLYt2zkJveoX3st
 
 raccoon:
   id: 4
-  username: raccoon
   email: raccoon@critters.org
   crypted_password: $2a$10$/nzNMtbPsNZl8JBAO/TQw.IGvXHIIP2Pw7EHaaNC5NpNSbVGBsOqK
   salt: zLGbZjLYt2zkJveoX3st
