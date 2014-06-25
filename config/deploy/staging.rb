@@ -15,8 +15,13 @@
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server '192.168.1.129', user: 'webapp', roles: [:web, :app] #, my_property: :my_value
-
+server '192.168.1.129',
+       user: 'webapp',
+       roles: [
+         :web,
+         :app,
+         :db
+       ]
 
 # Custom SSH Options
 # ==================
@@ -43,3 +48,6 @@ server '192.168.1.129', user: 'webapp', roles: [:web, :app] #, my_property: :my_
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
 #   }
+
+set :rails_env, 'production'
+set :branch, 'master'
