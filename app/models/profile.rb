@@ -5,6 +5,7 @@ class Profile < ActiveRecord::Base
   has_many :favorite_folders,   dependent: :destroy
   has_many :favorites,          dependent: :destroy
   has_many :filters,            dependent: :destroy
+  has_many :journal_images,     dependent: :destroy
   has_many :journals,           dependent: :destroy
   has_many :notifications,      dependent: :destroy
   has_many :profile_pics,       dependent: :destroy

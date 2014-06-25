@@ -19,7 +19,7 @@ class JournalImagesControllerTest < ActionController::TestCase
 
   test "index" do
     image = Rack::Test::UploadedFile.new(@file_path, 'image/jpeg')
-    @journal_image = @journal.journal_images.create(image: image)
+    @journal_image = @journal.journal_images.create(image: image, profile: @profile)
     get :index,
         profile_id: @profile,
         journal_id: @journal
@@ -54,7 +54,7 @@ class JournalImagesControllerTest < ActionController::TestCase
 
   test "delete" do
     image = Rack::Test::UploadedFile.new(@file_path, 'image/jpeg')
-    @journal_image = @journal.journal_images.create(image: image)
+    @journal_image = @journal.journal_images.create(image: image, profile: @profile)
     assert_difference 'JournalImage.count', -1 do
       delete :destroy,
              profile_id: @profile,
@@ -68,7 +68,7 @@ class JournalImagesControllerTest < ActionController::TestCase
     login_user(@lion.user)
     set_profile(@lion)
     image = Rack::Test::UploadedFile.new(@file_path, 'image/jpeg')
-    @journal_image = @journal.journal_images.create(image: image)
+    @journal_image = @journal.journal_images.create(image: image, profile: @profile)
     assert_no_difference 'JournalImage.count' do
       delete :destroy,
              profile_id: @profile,

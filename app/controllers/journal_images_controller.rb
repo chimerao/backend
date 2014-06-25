@@ -47,7 +47,8 @@ class JournalImagesController < ApplicationController
 
   # DELETE /profiles/1/journals/1.json
   def destroy
-    @journal.journal_images.find(params[:id]).destroy
+    @profile = current_profile
+    @profile.journal_images.find(params[:id]).destroy
     respond_to do |format|
       format.json { head :no_content }
     end
